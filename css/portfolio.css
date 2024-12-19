@@ -28,6 +28,9 @@ a {
     top: 0;
     z-index: 1000;
 }
+#nav-box a {
+    color: var(--background)
+}
 #column-picture {
     position: sticky;
     top: 0;
@@ -78,6 +81,9 @@ main {
     text-align: center;
     font-size: 1.5rem;
 }
+#sidebar header {
+    display: block;
+}
 section {
     margin: 1% 1% 1%;
     padding: 1% 1%;
@@ -97,6 +103,12 @@ p {
     position: sticky;
     top: 0;
     z-index: 999;
+    border-radius: 25px;
+    border: 6px solid var(--accent2);
+    background-color: var(--primary-color);
+}
+#photo-box img {
+    width: 85%;
 }
 #resume iframe {
     border: none;
@@ -129,6 +141,9 @@ p {
     gap: 2%;
     display: flex;
     flex-direction: row-reverse;
+}
+a:hover {
+    color: var(--text-color);
 }
 @media screen and (max-width: 768px) {
     header {
