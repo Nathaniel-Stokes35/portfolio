@@ -1,6 +1,6 @@
 :root{
-    --primary-font: ;
-    --secondary-font: ;
+    --primary-font: 'Arial', sans-serif;
+    --secondary-font: 'Georgia', serif;
     --primary-color: #333;
     --accent1: #5A90F2;
     --accent2: #2C3E50;
@@ -13,6 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--primary-font);
 }
 html {
     scroll-behavior: smooth;
@@ -103,7 +104,6 @@ p {
     height: 100vh;
 }
 #resume {
-    padding: 20px;
     background-color: var(--background);
     border-radius: 8px;
 }
@@ -118,8 +118,8 @@ p {
     display: inline-block;
 }
 .icon img{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     transition: opacity 0.3s;
 }
 .icon:hover img{
@@ -131,11 +131,25 @@ p {
     flex-direction: row-reverse;
 }
 @media screen and (max-width: 768px) {
+    header {
+        display: block;
+        text-align: center;
+        padding-bottom: 10%;
+    }
+    #nav-resume {
+        display: none;
+    }
+    section {
+        width: 95vw;
+    }
     #navigation{
         display: block;
     }
     main {
         display:block;
+    }
+    #resume iframe {
+        width:90vw;
     }
     #closing {
         border-radius: 10px;
