@@ -19,7 +19,7 @@ html {
     scroll-behavior: smooth;
 }
 a {
-    color: var(--accent1);
+    color: var(--accent2);
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -70,6 +70,9 @@ header {
     text-shadow: 2px 2px 8px rgb(3 3 3 / 0.5);
     margin: 1% 1%;
 }
+header a {
+    color: var(--background);
+}
 h3 {
     text-decoration: underline;
 }
@@ -110,7 +113,7 @@ p {
 #photo-box img {
     width: 85%;
 }
-#resume iframe {
+#resume object {
     border: none;
     width: 95vw;
     height: 100vh;
