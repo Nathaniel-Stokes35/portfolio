@@ -141,9 +141,10 @@
                     <h3>My Resume December 18th, 2024</h3>
                 </header>
                 <div id="pdf-document">
-                    <embed src="./documents/Nathaniel_Stokes_Resume.pdf"  
-                    type="application/pdf" 
-                    onerror="handleError()">
+                    <object data="./documents/Nathaniel_Stokes_Resume.pdf" type="application/pdf" id="pdfObject" onerror="handleError()">
+                        <p>Your browser doesn't support inline PDF viewing. You can  
+                        <a href="./documents/Nathaniel_Stokes_Resume.pdf" target="_blank">Download</a> instead.</p>
+                    </object>
                 </div>
                 <section id="onerror" style="display: none;">
                     <p>Your browser doesn't support inline PDF viewing. You can  
