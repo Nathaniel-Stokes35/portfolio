@@ -140,15 +140,18 @@
                 <header>
                     <h3>My Resume December 18th, 2024</h3>
                 </header>
-                <embed src="./documents/Nathaniel_Stokes_Resume.pdf"  
-                type="application/pdf" 
-                onerror="handleError()">
+                <div id="pdf-document">
+                    <embed src="./documents/Nathaniel_Stokes_Resume.pdf"  
+                    type="application/pdf" 
+                    onerror="handleError()">
+                </div>
                 <section id="onerror" style="display: none;">
                     <p>Your browser doesn't support inline PDF viewing. You can  
                     <a href="./documents/Nathaniel_Stokes_Resume.pdf" target="_blank">Download</a> instead.</p>
                 </section>
                 <script>
                     function handleError() {
+                        document.getElementById("pdf-document").style.display = "None";
                         document.getElementById("onerror").style.display = "block";
                     }
                 </script>
