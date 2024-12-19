@@ -113,7 +113,7 @@ p {
 #photo-box img {
     width: 85%;
 }
-#resume object {
+#resume embed {
     border: none;
     width: 95vw;
     height: 100vh;
