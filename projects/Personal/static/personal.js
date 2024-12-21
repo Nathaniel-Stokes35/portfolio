@@ -145,7 +145,7 @@ function class_check(att, set) {
             'agi-cha': { 'class': 'scoundrel', 'description': 'A charming and agile rogue who uses wit and cunning to outsmart their foes.' },
             'agi-end': { 'class': 'scout', 'description': 'A quick and observant individual who excels at reconnaissance and exploration.' },
             'wis-cha': { 'class': 'squad-leader', 'description': 'A seasoned leader who can command troops with wisdom and authority.' },
-            'wis-end': { 'class': 'worker', 'description': 'A battle-hardened warrior who leads with courage and strength.' },
+            'wis-end': { 'class': 'worker', 'description': 'A general extra hand on the ship. You\'re here to get a paycheck.' },
             'cha-end': { 'class': 'commander', 'description': 'A charismatic and strategic leader, known for their decisive nature and tactical mind.' }
         },
         'fan': {
@@ -243,20 +243,28 @@ function get_personality_name(MBTI) {
 }
 
 function discover(desc, att) {
-    var person_scores = Object.entries(character_data.att).slice(6, 14)
+    var full_att = character_data.att;
+    console.log('Character_data.att: ', full_att)
+    var personality_keys = ['e', 'i', 'n', 's', 'f', 't', 'p', 'j'];
+    console.log('E Score expairment: ', full_att[personality_keys[0]])
+    var person_scores = []
+    for (i=0; i < personality_keys.length; i++) {
+        person_scores.push(full_att[personality_keys[i]])
+    }
+    console.log('personality score: ', person_scores);
     var desc_weight = 0.7 
     var att_weight = 0.3 
 
     var att_modifiers = {
-        'intelligence': [-2, -2, -3, 1],  
-        'strength': [1, -2, -1, -1],       
-        'endurance': [-1, -3, -2, 1],      
-        'charisma': [3, 2, 3, 1],         
-        'wisdom': [1, 2, 2, -1],           
-        'agility': [-1, 2, 2, -1]            
+        'int': [-2, -2, -3, 1],   /* ISTP */
+        'str': [1, -2, -1, -1],       /* ESTJ */
+        'end': [-1, -3, -2, 1],      /* ISTP */
+        'cha': [3, 2, 3, 1],          /* ENFP */
+        'wis': [1, 2, 2, -1],           /* ENFJ */
+        'agi': [-1, 2, 2, -1]          /* INFJ */
     };
 
-    var clean_desc = desc.trim() === "" ? "bold energetic free reflective risktaking decisive independent character" : desc.replace(/[^\w\s]/g, '');
+    var clean_desc = desc.trim()  === "" ? "bold energetic free reflective risktaking decisive independent character" : desc.replace(/[^\w\s]/g, '');
 
     var E = ['outgoing','charismatic','bold','social','adventurous','energetic','talkative','expressive','leader','optimistic','enthusiastic','engaging','funloving','gregarious','assertive'];
     var I = ['quiet','reflective','thoughtful','reserved','independent','observant','contemplative','private','mysterious','shy','introspective','calm','focused','selfsufficient','self','serene'];
@@ -270,7 +278,8 @@ function discover(desc, att) {
     var P = ['spontaneous','flexible','openminded','open','adaptable','curious','freespirited','free','playful','resourceful','creative','unconventional','disorganized','exploratory','risktaking','risk','innovative','carefree','careless']; 
     var J = ['organized','structured','responsible','decisive','planner','disciplined','systematic','goaloriented','goal','reliable','focused','efficient','methodical','conscientious','punctual','predictable'];
 
-    Object.keys(att).forEach(function(attribute) {
+    console.log('Keys for sent in att: ', Object.values(att))
+    Object.values(att).forEach(function(attribute) {
         if (att_modifiers[attribute]) {
             var modifiers = att_modifiers[attribute];
 
@@ -287,6 +296,7 @@ function discover(desc, att) {
             person_scores[7] -= modifiers[3] * att_weight
         }  
     })
+    console.log('modified personality score: ', person_scores);
     var clean_desc = desc.replace(/[^\w\s]/g, '');
     var desc_words = clean_desc.split(' ') 
 
@@ -403,7 +413,6 @@ function calculateClass() {
 
     console.log("Top Attributes: ", topAttributes)
 
-    // Display the result
     if (!character_data.att || Object.keys(character_data.att).length === 0) {
         document.getElementById("question-title").innerHTML = "Attributes are empty.";
     } else {
@@ -422,23 +431,67 @@ function calculateClass() {
     document.getElementById("question-title").innerHTML = `Your character's class is: ${character_class.class}`;
     document.getElementById("options-container").innerHTML = `Description: ${character_class.description}`;
     quiz_button.innerHTML = "Submit";
-    quiz_button.onclick = showDescription;
+    quiz_button.onclick = nextStep(4);
 }
 
-// Initialize the questionnaire (to be called after the initial selection)
 function startQuestionnaire() {
     curr_question = 0;
-    document.getElementById('quiz-ask').style.display = 'none';
+    document.getElementById('quiz-restart').style.display = 'none';
+    document.getElementById('restart-button').style.display='block';
     document.getElementById('question-title').style.display = 'flex';
-    document.getElementById('options-container').style.display = 'grid';
+    document.getElementById('options-container').style.display = 'flex';
     document.getElementById('quiz-button').style.display = 'block';
-    updateQuestion(); // Show the first question
+    updateQuestion(); 
 }
 function showDescription() {
     document.getElementById("quiz-box").style.display = 'none';
     document.getElementById("desc-box").style.display = "grid";
 }
 function nextStep(currStep) {
+    if (currStep === 3) {
+        if (selectedAttributes.length > 2) {
+            alert('Only two attributes can be selected');
+            return;
+        }
+        else if (selectedAttributes.length < 2) {
+            alert('You must select Two(2) Attributes.');
+            return;
+        }
+        for (let i; i < selectedAttributes.length; i++) {
+            character_data[att, selectedAttributes[i]] + 1;
+        }
+        sortedAttributes = selectedAttributes
+    }
+    if (currStep === 5) {
+        var person_name;
+        var person_desc;
+        var name_plate = document.getElementById('character_name');
+        var personality_label = document.getElementById('personality_name');
+        var person_desc_label = document.getElementById('personality_description');
+        var class_label = document.getElementById('class_name');
+        var class_desc_label = document.getElementById('class_description');
+        const charDesc = document.getElementById('character_desc').value;
+
+        console.log('Sorted Attributes: ', sortedAttributes)
+        var personality = discover(charDesc, sortedAttributes);
+        person_name = personality[0];
+        person_desc = personality[1];
+        person_type = personality[2];
+        console.log('Returned Discover Variable: ', personality)
+        console.log("Personality Name: ", person_name)
+
+        name_plate.innerHTML = character_data.name;
+        personality_label.innerHTML = title(person_name);
+        person_desc_label.innerHTML = person_desc;
+        class_label.innerHTML = title(character_data.class);
+        class_desc_label.innerHTML = character_data.description;
+    }
+
+    document.getElementById(`step${currStep}`).style.display = 'none';
+    currStep += 1;
+    document.getElementById(`step${currStep}`).style.display = 'block'; 
+}
+function lastStep(currStep) {
     if (currStep === 3) {
         if (selectedAttributes.length > 2) {
             alert('Only two attributes can be selected');
@@ -463,7 +516,9 @@ function nextStep(currStep) {
         var class_desc_label = document.getElementById('class_description');
         const charDesc = document.getElementById('character_desc').value;
 
+        console.log('nextStep attributes: ', sortedAttributes)
         var personality = discover(charDesc, sortedAttributes);
+        console.log('Sorted Attributes: ', sortedAttributes)
         person_name = personality[0];
         person_desc = personality[1];
         person_type = personality[2];
@@ -478,7 +533,7 @@ function nextStep(currStep) {
     }
 
     document.getElementById(`step${currStep}`).style.display = 'none';
-    currStep += 1;
+    currStep -= 1;
     document.getElementById(`step${currStep}`).style.display = 'block'; 
 }
 function checkName() {

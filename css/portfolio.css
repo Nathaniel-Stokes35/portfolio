@@ -23,6 +23,10 @@ a {
     font-size: 1.5rem;
     font-weight: 700;
 }
+span {
+    background-color: var(--primary-color);
+    color: var(--background)
+}
 #nav-box {
     position: sticky;
     top: 0;
@@ -33,8 +37,13 @@ a {
 }
 #column-picture {
     position: sticky;
+    border-radius: 25px;
     top: 0;
     z-index: 1000;
+}
+#column-picture img {
+    border-radius: 25px;
+    width: 100%;
 }
 nav ul{
     list-style: None;

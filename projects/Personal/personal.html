@@ -12,10 +12,10 @@
         <div id="nav-box">
             <nav>
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./personal.html">Personal Projects</a></li>
-                    <li><a href="./tripleTen.html">TripleTen Projects</a></li>
-                    <li><a href="./byu-i.html">BYU-Idaho Projects</a></li>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/projects/Personal/personal.html">Personal Projects</a></li>
+                    <li><a href="/projects/TripleTen/tripleTen.html">TripleTen Projects</a></li>
+                    <li><a href="/projects/BYU-I/byu-i.html">BYU-Idaho Projects</a></li>
                 </ul>
             </nav>
         </div>
@@ -33,70 +33,134 @@
         </div>
         <section class="cyoag-box">
             <div id="character-creation">
-                <h1>Create Your Character</h1>
+                <h2>Create Your Character</h2>
                 <form id="characterForm">
-                    <div class="form-step" id="step1">
-                        <label for="theme">What is your Name?</label>
-                        <input type="text" id="name" name="name" value="John Jacob Jingle-Heimer-Schmidt">
-                        <button type="button" onclick="checkName()" class="next-button">Settings</button>
-                    </div>
 
-                    <div class="form-step" id="step2" style="display: none;">
-                        <p><label for="theme">Choose your theme:</label></p>
-                        <select id="theme" name="theme" required>
-                            <option value="spa">Space</option>
-                            <option value="fan">Fantasy</option>
-                            <option value="pir">Pirate</option>
-                        </select>
-                        <button type="button" onclick="nextStep(2)" class="next-button">Attributes / Class</button>
-                    </div>
+                    <section class="form-step" id="step1">
+                        <header>
+                            <h3>Character Name:</h3>
+                        </header>
+                        <span class="selection-box">
+                            <input type="text" id="name" name="name" value="John Jacob Jingle-Heimer-Schmidt">
+                            <button type="button" onclick="checkName()" class="next-button">Settings</button>
+                        </span>
+                    </section>
 
-                    <div class="form-step" id="step3" style="display: none;">
-                        <label for="attributes">Choose two attributes:</label>
-                        <div id="att-box">
-                            <input type="checkbox" name="attributes" value="int" onchange="updateAttributes()"> Intelligence
-                            <input type="checkbox" name="attributes" value="str" onchange="updateAttributes()"> Strength
-                            <input type="checkbox" name="attributes" value="end" onchange="updateAttributes()"> Endurance
-                            <input type="checkbox" name="attributes" value="cha" onchange="updateAttributes()"> Charisma
-                            <input type="checkbox" name="attributes" value="wis" onchange="updateAttributes()"> Wisdom
-                            <input type="checkbox" name="attributes" value="agi" onchange="updateAttributes()"> Agility
+                    <section class="form-step" id="step2" style="display: none;">
+                        <header>
+                            <h3>Choose your Setting: </h3>
+                            <button type="button" onclick="lastStep(2)" class="back-button">Name</button>
+                            <button type="button" onclick="nextStep(2)" class="next-button">Attributes / Class</button>
+                        </header>
+                        <div class="selection-box">
+                            <select id="theme" name="theme" required>
+                                <option value="spa">Space</option>
+                                <option value="fan">Fantasy</option>
+                                <option value="pir">Pirate</option>
+                            </select>
                         </div>
-                        <p><label id="class-title">Your Class Title will go here after selecting two attributes</label></p>
-                        <p><button type="button" onclick="nextStep(3)" class="next-button">Character Description</button></p>
-                    </div>
+                    </section>
 
-                    <div class="form-step" id="step4" style="display: none;">
-                        <label for="character_desc">Describe your character:</label>
-                        <section id="quiz-box">
-                            <label id="quiz-ask">Would you Like to take a Personality Quiz to help determine your character?</label>
-                            <button type="button" id="yes" onclick="startQuestionnaire()" class="next-button">Yes</button><button type="button" onclick="showDescription()" id="no" class="next-button">No</button>
-                            <label id="question-title" style="display: none;"></label>
-                            <div id="options-container" style="display: none;"></div>
+                    <section class="form-step" id="step3" style="display: none;">
+                        <header>
+                            <h3>Choose two attributes:</h3>
+                            <button type="button" onclick="lastStep(3)" class="back-button">Setting</button>
+                            <button type="button" onclick="nextStep(3)" class="next-button">Character Description</button>
+                        </header>
+                        <div class="selection-box">
+                            <span id="att-options">
+                                <span class="labels">
+                                    <label for="int">Intelligence</label>
+                                    <label for="str">Strength</label>
+                                    <label for="end">Endurance</label>
+                                    <label for="cha">Charisma</label>
+                                    <label for="wis">Wisdom</label>
+                                    <label for="agi">Agility</label>
+                                </span>
+                                <span class="boxes">
+                                    <input type="checkbox" name="attributes" value="int" id="int" onchange="updateAttributes()"> 
+                                    <input type="checkbox" name="attributes" value="str" id="str" onchange="updateAttributes()">
+                                    <input type="checkbox" name="attributes" value="end" id="end" onchange="updateAttributes()">
+                                    <input type="checkbox" name="attributes" value="cha" id="cha" onchange="updateAttributes()">
+                                    <input type="checkbox" name="attributes" value="wis" id="wis" onchange="updateAttributes()">
+                                    <input type="checkbox" name="attributes" value="agi" id="agi" onchange="updateAttributes()">
+                                </span>
+                            </span>
+                            <label id="class-title">Your Class Title will go here after selecting two attributes</label>
+                        </div>
+                    </section>
+                    <section class="form-step" id="step4" style="display: none;">
+                        <header>
+                            <h3>Personality Quiz:</h3>
+                            <button type="button" onclick="lastStep(4)" class="back-button">Attributes / Class</button>
+                            <button type="button" id="restart-button" onclick="startQuestionnaire()" class="next-button" style="display: none;">Restart</button>
+                        </header>
+                        <div id="quiz-restart">
+                            <label id="quiz-ask">Would you like to take a test to determine class and personality?</label>
+                            <button type="button" onclick="nextStep(4)" id="skip" class="next-button">No</button>
+                            <button type="button" id="restart" onclick="startQuestionnaire()" class="next-button">Yes</button>
+                        </div>
+                        <section class="cyoag-container" id="quiz-box">
+                            <div id="title-container"><h2 id="question-title" style="display: none;"></h2></div>
+                            <span id="options-container" style="display: none;"></span>
                             <div id="attributes-container" style="display: none;"></div>
                             <button type="button" id="quiz-button" style="display: none;">Next Question</button>
                         </section>
-                        <section id="desc-box" style="display: none;">
+                    </section>
+
+                    <section class="form-step" id="step5" style="display: none;">
+                        <header>
+                            <button type="button" onclick="lastStep(4)" class="back-button">Personality</button>
+                            <h3>Describe your character:</h3>
+                        </header>
+                        <section id="desc-box">
                             <label>This is optional but if you would like to explain more about your character, this is where you can.</label>
                             <textarea id="character_desc" name="character_desc" rows="5" placeholder="Enter a short description of your character"></textarea>
-                            <button type="button" onclick="nextStep(4)" class="next-button">Results</button>
+                            <button type="button" onclick="nextStep(5)" class="next-button">Results</button>
                         </section>
-                    </div>
+                    </section>
                 </form>
-                <div class="form-step" id="step5" style="display: none;">
-                    <h2>Review and Move to the Game</h2>
-                    <strong>Character Name: </strong> <span id="character_name"></span>
-                    <strong>Personality: </strong> <span id="personality_name"></span>
-                    <strong>Personality Description: </strong> <span id="personality_description"></span>
-                    <strong>Class: </strong> <span id="class_name"></span>
-                    <strong>Class Description: </strong> <span id="class_description"></span>
-                    <button type="button" onclick="submitForm()">Submit</button>
+                <div class="form-step" id="step6" style="display: none;">
+                    <header>
+                        <h2>Review and Move to the Game</h2>
+                    </header>
+                    <span>                        
+                        <h4>Character Name: </h4> <p id="character_name"></p>
+                        <h4>Personality: </h4> <p id="personality_name"></p>
+                        <h4>Personality Description: </h4> <p id="personality_description"></p>
+                        <h4>Class: </h4> <p id="class_name"></p>
+                        <h4>Class Description: </h4> <p id="class_description"></p>
+                        <button type="button" onclick="submitForm()">Submit</button>
+                    </span>    
                 </div>
             </div>
         </section>
-        <section id="column-picture">
-            <img src="./images/solar_eclipse.jpg">
-        </section>
+        <footer>
+            <section id="column-picture">
+                <header>
+                    <h3></h3>
+                </header>
+                <section id="photo-box">
+                    <img src="./images/solar_eclipse.jpg">
+                </section>
+            </section>
+        </footer>
     </main>
+    <footer>
+        <div id="sign-off">
+            <p>&emsp;Thank you for trying my game,</p>
+            <p>&emsp;&emsp;-Nathan (Or Nathaniel, or Stokes, or Whatever non-derogatory term you like)</p> 
+            <p>&emsp;&emsp;&emsp;Feel free to explore my resume.</p>
+        </div>
+        <section id="closing">
+            <p>&copy;2024 | Nathaniel Stokes | Missouri, USA | </p>
+            <ul id="social-logos">
+                <li><a href="mailto:nathaniel.stokes35@gmail.com" target="_blank" class="icon" id="social"><img src="/images/gmail-logo.jpeg"></a></li>
+                <li><a href="https://www.linkedin.com/in/nathan-stokes-11922170" target="_blank" class="icon" id="social"><img src="/images/LinkedIn_logo_initials.png"></a></li>
+                <li><a href="https://www.facebook.com/Shadowarecus" target="_blank" class="icon" id="social"><img src="/images/Facebook_logo_(square).png"></a></li>
+            </ul>
+        </section>
+    </footer>
     <script src="./static/personal.js">
         
     </script>
