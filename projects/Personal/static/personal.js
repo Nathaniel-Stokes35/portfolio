@@ -327,10 +327,10 @@ function discover(desc, att) {
     return [type[0], type[1], MBTI];
 }
 function updateQuestion() {
-    document.getElementById("question-title").scrollIntoView({
+    /*document.getElementById("question-title").scrollIntoView({
         behavior: 'smooth',
         flex: 'start' 
-    });
+    });*/
     let questionContainer = document.getElementById("question-title");
     let optionsContainer = document.getElementById("options-container");
     let nextButton = document.getElementById("quiz-button");
