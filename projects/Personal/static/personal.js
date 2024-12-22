@@ -327,6 +327,10 @@ function discover(desc, att) {
     return [type[0], type[1], MBTI];
 }
 function updateQuestion() {
+    document.getElementById("question-title").scrollIntoView({
+        behavior: 'smooth',
+        flex: 'start' 
+    });
     let questionContainer = document.getElementById("question-title");
     let optionsContainer = document.getElementById("options-container");
     let nextButton = document.getElementById("quiz-button");
@@ -339,6 +343,8 @@ function updateQuestion() {
 
     // Create radio buttons for each option
     app_questions[curr_question].options.forEach((option, index) => {
+        let wrapDiv = document.createElement("span");
+        wrapDiv.classList.add("option-box");
         let optionLabel = document.createElement("label");
         let optionInput = document.createElement("input");
         optionInput.type = "radio";
@@ -346,7 +352,8 @@ function updateQuestion() {
         optionInput.value = option.attributes; // Value contains attribute updates
         optionLabel.appendChild(optionInput);
         optionLabel.appendChild(document.createTextNode(option.text));
-        optionsContainer.appendChild(optionLabel);
+        wrapDiv.appendChild(optionLabel)
+        optionsContainer.appendChild(wrapDiv);
         optionsContainer.appendChild(document.createElement("br"));
     });
 
@@ -373,9 +380,10 @@ function updateQuestion() {
 
         // Move to the next question or calculate the class if it's the last question
         curr_question++;
-        if (curr_question < app_questions.length) {
+        quest_length = app_questions.length
+        if (curr_question < (quest_length - 1)) {
             updateQuestion(); // Update the UI with the next question
-        } else if (curr_question === app_questions,length) {
+        } else if (curr_question === app_questions.length - 1) {
             document.getElementById('quiz-button').innerHTML = "Submit";
             updateQuestion();
         } else {
@@ -391,6 +399,7 @@ function sort(dict) {
     return entries.map(entry => entry.slice(0, 3)); 
 }
 function calculateClass() {
+    console.log('Success It is getting into the calculateClass function!')
     const quiz_button = document.getElementById("quiz-button");
     let character_att = Object.entries(character_data.att).slice(0, 6);
     console.log("Attribute Entries: ", character_att);
@@ -415,18 +424,7 @@ function calculateClass() {
 
     if (!character_data.att || Object.keys(character_data.att).length === 0) {
         document.getElementById("question-title").innerHTML = "Attributes are empty.";
-    } else {
-        let attributesContainer = document.getElementById("attributes-container");
-        attributesContainer.style.display= "block";
-    
-        for (let attr in character_data.att) {
-            if (character_data.att.hasOwnProperty(attr)) {
-                let valueLabel = document.createElement("label");
-                valueLabel.textContent = `${attr}: ${character_data.att[attr]}`;
-                attributesContainer.appendChild(valueLabel);
-            }
-        }
-    }
+    } 
 
     document.getElementById("question-title").innerHTML = `Your character's class is: ${character_class.class}`;
     document.getElementById("options-container").innerHTML = `Description: ${character_class.description}`;
@@ -437,6 +435,7 @@ function calculateClass() {
 function startQuestionnaire() {
     curr_question = 0;
     document.getElementById('quiz-restart').style.display = 'none';
+    document.getElementById('quiz-box').style.display = 'flex';
     document.getElementById('restart-button').style.display='block';
     document.getElementById('question-title').style.display = 'flex';
     document.getElementById('options-container').style.display = 'flex';
@@ -463,6 +462,7 @@ function nextStep(currStep) {
         sortedAttributes = selectedAttributes
     }
     if (currStep === 5) {
+        document.getElementById('desc-box').style.display = 'none';
         var person_name;
         var person_desc;
         var name_plate = document.getElementById('character_name');
@@ -492,49 +492,13 @@ function nextStep(currStep) {
     document.getElementById(`step${currStep}`).style.display = 'block'; 
 }
 function lastStep(currStep) {
-    if (currStep === 3) {
-        if (selectedAttributes.length > 2) {
-            alert('Only two attributes can be selected');
-            return;
-        }
-        else if (selectedAttributes.length < 2) {
-            alert('You must select Two(2) Attributes.');
-            return;
-        }
-        for (let i; i < selectedAttributes.length; i++) {
-            character_data[att, selectedAttributes[i]] + 1;
-        }
-    }
-    if (currStep === 4) {
-        var person_name;
-        var person_desc;
-        var person_type;
-        var name_plate = document.getElementById('character_name');
-        var personality_label = document.getElementById('personality_name');
-        var person_desc_label = document.getElementById('personality_description');
-        var class_label = document.getElementById('class_name');
-        var class_desc_label = document.getElementById('class_description');
-        const charDesc = document.getElementById('character_desc').value;
-
-        console.log('nextStep attributes: ', sortedAttributes)
-        var personality = discover(charDesc, sortedAttributes);
-        console.log('Sorted Attributes: ', sortedAttributes)
-        person_name = personality[0];
-        person_desc = personality[1];
-        person_type = personality[2];
-        console.log('Returned Discover Variable: ', personality)
-        console.log("Personality Name: ", person_name)
-
-        name_plate.innerHTML = character_data.name;
-        personality_label.innerHTML = title(person_name);
-        person_desc_label.innerHTML = person_desc;
-        class_label.innerHTML = character_data.class;
-        class_desc_label.innerHTML = character_data.description;
-    }
-
     document.getElementById(`step${currStep}`).style.display = 'none';
     currStep -= 1;
     document.getElementById(`step${currStep}`).style.display = 'block'; 
+}
+function editForm(){
+    document.getElementById('step6').style.display = 'none';
+    document.getElementById('step1').style.display = 'flex';
 }
 function checkName() {
     var nameValue = document.getElementById('name').value.trim();

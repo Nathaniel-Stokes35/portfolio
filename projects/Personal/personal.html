@@ -100,10 +100,9 @@
                             <button type="button" onclick="nextStep(4)" id="skip" class="next-button">No</button>
                             <button type="button" id="restart" onclick="startQuestionnaire()" class="next-button">Yes</button>
                         </div>
-                        <section class="cyoag-container" id="quiz-box">
+                        <section class="selection-box" id="quiz-box" style="display: none;">
                             <div id="title-container"><h2 id="question-title" style="display: none;"></h2></div>
                             <span id="options-container" style="display: none;"></span>
-                            <div id="attributes-container" style="display: none;"></div>
                             <button type="button" id="quiz-button" style="display: none;">Next Question</button>
                         </section>
                     </section>
@@ -123,15 +122,33 @@
                 <div class="form-step" id="step6" style="display: none;">
                     <header>
                         <h2>Review and Move to the Game</h2>
+                        <button type="button" onclick="editForm()">Edit</button>
                     </header>
-                    <span>                        
-                        <h4>Character Name: </h4> <p id="character_name"></p>
-                        <h4>Personality: </h4> <p id="personality_name"></p>
-                        <h4>Personality Description: </h4> <p id="personality_description"></p>
-                        <h4>Class: </h4> <p id="class_name"></p>
-                        <h4>Class Description: </h4> <p id="class_description"></p>
-                        <button type="button" onclick="submitForm()">Submit</button>
-                    </span>    
+                    <table id="character-info">
+                        <tr>
+                            <td><h4>Character Name:</h4></td>
+                            <td><p id="character_name"></p></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Personality:</h4></td>
+                            <td><p id="personality_name"></p></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Personality Description:</h4></td>
+                            <td><p id="personality_description"></p></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Class:</h4></td>
+                            <td><p id="class_name"></p></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Class Description:</h4></td>
+                            <td><p id="class_description"></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button type="button" onclick="submitForm()">Submit</button></td>
+                        </tr>
+                    </table>   
                 </div>
             </div>
         </section>
