@@ -131,24 +131,73 @@
                             <button type="button" onclick="nextStep(4)" class="next-button">Character Description</button>
                         </header>
                         <div class="selection-box">
-                            <span id="att-options">
-                                <span class="labels">
-                                    <label for="int">Intelligence</label>
-                                    <label for="str">Strength</label>
-                                    <label for="end">Endurance</label>
-                                    <label for="cha">Charisma</label>
-                                    <label for="wis">Wisdom</label>
-                                    <label for="agi">Agility</label>
-                                </span>
-                                <span class="boxes">
-                                    <input type="checkbox" name="attributes" value="int" id="int" onchange="updateAttributes()"> 
-                                    <input type="checkbox" name="attributes" value="str" id="str" onchange="updateAttributes()">
-                                    <input type="checkbox" name="attributes" value="end" id="end" onchange="updateAttributes()">
-                                    <input type="checkbox" name="attributes" value="cha" id="cha" onchange="updateAttributes()">
-                                    <input type="checkbox" name="attributes" value="wis" id="wis" onchange="updateAttributes()">
-                                    <input type="checkbox" name="attributes" value="agi" id="agi" onchange="updateAttributes()">
-                                </span>
-                            </span>
+                            <table id="att-options">
+                                <thead class="labels">
+                                    <tr>
+                                        <th>Attributes: </th>
+                                        <th>Description: </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="boxes">
+                                    <tr>
+                                        <td><label for="int">Intelligence</label></td>
+                                        <td><label for="int">
+                                            Your character has developed a sharp mind, quick to analyze and solve complex problems. They excel in situations that require strategy, 
+                                            planning, and creativity. Their intellect helps them navigate the world through logic and innovation, making them ideal for roles that 
+                                            require precise thought. (Choosing Intelligence may suggest a preference for introspection and independent problem-solving, often 
+                                            guiding characters toward roles that require deep thinking and a strategic mindset.)
+                                        </label></td>
+                                        <td><input type="checkbox" name="attributes" value="int" id="int" onchange="updateAttributes()"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="str">Strength</label></td>
+                                        <td><label for="str">
+                                            Strength represents your character's physical power and ability to overcome challenges through sheer force. Whether lifting, fighting, or 
+                                            surviving, they thrive in roles that demand resilience and dominance. Strength drives them to lead with their body and willpower. (Characters 
+                                            who prioritize Strength often act decisively and face challenges head-on, guided by a desire for control and the ability to influence their environment.)
+                                        </label></td>
+                                        <td><input type="checkbox" name="attributes" value="str" id="str" onchange="updateAttributes()"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="end">Endurance</label></td>
+                                        <td><label for="end">
+                                            Your character's been trained to push through fatigue, adversity, and pain. Whether under physical strain or emotional hardship, they will press forward. 
+                                            It may not be pretty but they'll excel in long-term effort thriving in situations that demand patience, resilience, and tenacity. (Choosing Endurance suggests 
+                                            a steady, persistent approach, favoring roles that require lasting commitment and the ability to withstand dicciculty.)
+                                        </label></td>
+                                        <td><input type="checkbox" name="attributes" value="end" id="end" onchange="updateAttributes()"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="cha">Charisma</label></td>
+                                        <td><label for="cha">
+                                            Perfecting their social presence and ability to influence others. A charasmatic character will draw people in with ease. They excel in roles that require 
+                                            persuasion, leadership, and the ability to connect with others. Their charisma helps them inspire, rally, and lead through their presence and charm to overcome 
+                                            challenges. (Choosing Charisma suggests your character has a magnetic personality, likely to inspire others and excel in social interactions, whether through 
+                                            empathy or bold action.)
+                                        </label></td>
+                                        <td><input type="checkbox" name="attributes" value="cha" id="cha" onchange="updateAttributes()"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="wis">Wisdom</label></td>
+                                        <td><label for="wis">
+                                            Your character has grown to being wise. A wise character uses their experience to help make sound decisions based on that experience and intuition. They excel in 
+                                            guiding others, handling complex social situations, and making choices that consider the greater good for all. (Wisdom suggests a calm, thoughtful demeanor, favoring 
+                                            roles that require guidance, understanding, and a influencing moral compass.)
+                                        </label></td>
+                                        <td><input type="checkbox" name="attributes" value="wis" id="wis" onchange="updateAttributes()"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="agi">Agility</label></td>
+                                        <td><label for="agi">
+                                            A Character proficent in agility is able to think and move quickly, reacting to situations with precision. An agile character excels in roles that require speed, finesse, 
+                                            and adaptability. Whether dodging, sneaking, or swiftly responding, thier agility ensures they stay one step ahead. (Choosing Agility suggests a flexible, adaptable nature, 
+                                            ready to take on challenges that require quick thinking and rapid action.)
+                                        </label></td>
+                                        <td><input type="checkbox" name="attributes" value="agi" id="agi" onchange="updateAttributes()"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             <label id="class-title">Your Class Title will go here after selecting two attributes</label>
                         </div>
                     </section>
@@ -161,7 +210,7 @@
                         </header>
                         <div id="quiz-restart">
                             <label id="quiz-ask">Would you like to take a test to determine class and personality?</label>
-                            <button type="button" onclick="nextStep(5)" id="skip" class="next-button">No</button>
+                            <button type="button" onclick="skip_quiz(5)" id="skip" class="next-button">No</button>
                             <button type="button" id="restart" onclick="startQuestionnaire()" class="next-button">Yes</button>
                         </div>
                         <section class="selection-box" id="quiz-box" style="display: none;">
@@ -187,7 +236,7 @@
                 <div class="form-step" id="step7" style="display: none;">
                     <header>
                         <h2>Review and Move to the Game</h2>
-                        <button type="button" id ="edit-button" onclick="editForm()">Edit</button>
+                        <button type="button" id ="edit-button" onclick="editConfirm()">Edit</button>
                     </header>
                     <table id="character-info">
                         <tr>
@@ -236,9 +285,9 @@
         <section id="closing">
             <p>&copy;2024 | Nathaniel Stokes | Missouri, USA | </p>
             <ul id="social-logos">
-                <li><a href="mailto:nathaniel.stokes35@gmail.com" target="_blank" class="icon" id="social"><img src="/images/gmail-logo.jpeg"></a></li>
-                <li><a href="https://www.linkedin.com/in/nathan-stokes-11922170" target="_blank" class="icon" id="social"><img src="/images/LinkedIn_logo_initials.png"></a></li>
-                <li><a href="https://www.facebook.com/Shadowarecus" target="_blank" class="icon" id="social"><img src="/images/Facebook_logo_(square).png"></a></li>
+                <li><a href="mailto:nathaniel.stokes35@gmail.com" target="_blank" class="icon" id="social"><img src="../../images/gmail-logo.jpeg"></a></li>
+                <li><a href="https://www.linkedin.com/in/nathan-stokes-11922170" target="_blank" class="icon" id="social"><img src="../../images/LinkedIn_logo_initials.png"></a></li>
+                <li><a href="https://www.facebook.com/Shadowarecus" target="_blank" class="icon" id="social"><img src="../../images/Facebook_logo_(square).png"></a></li>
             </ul>
         </section>
     </footer>

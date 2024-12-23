@@ -275,7 +275,7 @@ function discover(desc, att) {
     var S = ['practical','realistic','detail','observant','grounded','logical','concrete','present','action','reliable','precise','sensible','cautious','hands','focused', 'dirty', 'mess', 'clean', 'touch']; 
 
     var F = ['compassionate','empathetic','caring','sensitive','altruistic','harmonious','supportive','kind','heart','idealistic','genuine','considerate','patient','warm','understanding','cooperative'];
-    var T = ['Analytical','logical','objective','strategic','decisive','detached','independent','rational','problemsolver','solver','skeptical','critical','realistic','efficient','pragmatic','direct', 'smart'];
+    var T = ['analytical','logical','objective','strategic','decisive','detached','independent','rational','problemsolver','solver','skeptical','critical','realistic','efficient','pragmatic','direct', 'smart'];
 
     var P = ['spontaneous','flexible','openminded','open','adaptable','curious','freespirited','free','playful','resourceful','creative','unconventional','disorganized','exploratory','risktaking','risk','innovative','carefree','careless']; 
     var J = ['organized','structured','responsible','decisive','planner','disciplined','systematic','goaloriented','goal','reliable','focused','efficient','methodical','conscientious','punctual','predictable'];
@@ -329,6 +329,11 @@ function discover(desc, att) {
     return [type[0], type[1], MBTI];
 }
 function skip_quiz(){
+    if (curr_question === 0) {
+        quiz = false;
+        nextStep(5);
+        showDescription();
+    }
     nextStep(5);
     showDescription();
 }
@@ -470,6 +475,7 @@ function calculateClass() {
 
 function startQuestionnaire() {
     curr_question = 0;
+    quiz = true;
     document.getElementById('quiz-restart').style.display = 'none';
     document.getElementById('quiz-box').style.display = 'flex';
     document.getElementById('restart-button').style.display='block';
@@ -540,7 +546,20 @@ function lastStep(currStep) {
     currStep -= 1;
     document.getElementById(`step${currStep}`).style.display = 'block'; 
 }
-function editForm(){
+function editConfirm(){
+    if (quiz) {
+        const edit_confirm = window.confirm(
+            "All personality quiz information will be lost."
+        );
+        if (edit_confirm) {
+            editForm();
+        }
+    }
+    else {
+        editForm();
+    }
+}
+function editForm() {
     character_data.att = {
         strength : 0,
         intelligence : 0,
@@ -564,6 +583,7 @@ function editForm(){
     document.getElementById('step6').style.display = 'none';
     document.getElementById('step1').style.display = 'flex';
 }
+
 function checkName() {
     var nameValue = document.getElementById('name').value.trim();
     
