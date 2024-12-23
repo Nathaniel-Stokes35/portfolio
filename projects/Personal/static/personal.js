@@ -427,6 +427,7 @@ function updateQuestion() {
             updateQuestion();
         } else {
             // All questions have been answered, calculate the class
+            curr_question = 0;
             calculateClass();
             showDescription();
             return;
