@@ -502,6 +502,7 @@ function nextStep(currStep) {
     if (currStep === 6) {
         document.getElementById('desc-box').style.display = 'none';
         document.getElementById("edit-button").style.display = 'block';
+        document.getElementById("submit-button").style.display = 'block';
         var person_name;
         var person_desc;
         var name_plate = document.getElementById('character_name');
