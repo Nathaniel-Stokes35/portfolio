@@ -499,6 +499,9 @@ function nextStep(currStep) {
         }
         sortedAttributes = selectedAttributes
     }
+    if (currStep === 5) {
+        showDescription();
+    }
     if (currStep === 6) {
         document.getElementById('desc-box').style.display = 'none';
         document.getElementById("edit-button").style.display = 'block';
