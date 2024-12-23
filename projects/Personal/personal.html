@@ -42,17 +42,80 @@
                         </header>
                         <span class="selection-box">
                             <input type="text" id="name" name="name" value="John Jacob Jingle-Heimer-Schmidt">
-                            <button type="button" onclick="checkName()" class="next-button">Settings</button>
+                            <button type="button" onclick="checkName()" class="next-button">Next: Sex</button>
                         </span>
                     </section>
 
                     <section class="form-step" id="step2" style="display: none;">
                         <header>
-                            <h3>Choose your Setting: </h3>
-                            <button type="button" onclick="lastStep(2)" class="back-button">Name</button>
-                            <button type="button" onclick="nextStep(2)" class="next-button">Attributes / Class</button>
+                            <h3>Character Sex:</h3>
+                            <button type="button" onclick="lastStep(2)" class="back-button">Back: Name</button>
+                            <button type="button" onclick="nextStep(2)" class="next-button">Next: Settings</button>
                         </header>
-                        <div class="selection-box">
+                        <span class="selection-box">
+                            <table class="input-table">
+                                <thead>
+                                    <tr>
+                                        <th>Sex</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><label for="male-radio">Male</label></td>
+                                        <td><input type="radio" class="sex-radio" id="male-radio" name="sex" required></td>
+                                    </tr>
+                                    <tr>    
+                                        <td><label for="female-radio">Female</label></td>
+                                        <td><input type="radio" class="sex-radio" id= 'female-radio' name="sex" ></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </span>
+                    </section>
+
+                    <section class="form-step" id="step3" style="display: none;">
+                        <header>
+                            <h3>Choose your Setting: </h3>
+                            <button type="button" onclick="lastStep(3)" class="back-button">Name</button>
+                            <button type="button" onclick="nextStep(3)" class="next-button">Attributes / Class</button>
+                        </header>
+                        <div class="selection-box" id="setting-table">
+                            <table class="input-table">
+                                <thead>
+                                    <tr>
+                                        <th>Setting</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><label for="space-radio">Space</label></td>
+                                        <td colspan="2">
+                                            <label for="space-radio">
+                                                You are aboard a wayfaring vessel deep in the titular voids of space, journeying into 
+                                                the newly charted expanses of the galaxy. On a routine trade mission to the fringes of 
+                                                known space, outer-region diplomats clash over sovereignty and the ethics of colonial 
+                                                expansion. Meanwhile, a shadowy underground network may be quietly manipulating the 
+                                                vessel's high-stakes research project—an ambitious, dangerous initiative with the potential 
+                                                to either revolutionize or obliterate entire solar systems in unparalleled scale and magnitude.
+                                            </label>
+                                        </td>
+                                        <td><input type="radio" id="space-radio" name="setting"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="fantasy-radio">Fantasy</label></td>
+                                        <td colspan="2"><label for="fantasy-radio"></label></td>
+                                        <td><input type="radio" id="fantasy-radio" name="setting"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="pirate-radio">Pirate</label></td>
+                                        <td colspan="2"><label for="pirate-radio"></label></td>
+                                        <td><input type="radio" id="pirate-radio" name="setting"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="selection-box" id="setting-select" style="display: none;">
                             <select id="theme" name="theme" required>
                                 <option value="spa">Space</option>
                                 <option value="fan">Fantasy</option>
@@ -61,11 +124,11 @@
                         </div>
                     </section>
 
-                    <section class="form-step" id="step3" style="display: none;">
+                    <section class="form-step" id="step4" style="display: none;">
                         <header>
                             <h3>Choose two attributes:</h3>
-                            <button type="button" onclick="lastStep(3)" class="back-button">Setting</button>
-                            <button type="button" onclick="nextStep(3)" class="next-button">Character Description</button>
+                            <button type="button" onclick="lastStep(4)" class="back-button">Setting</button>
+                            <button type="button" onclick="nextStep(4)" class="next-button">Character Description</button>
                         </header>
                         <div class="selection-box">
                             <span id="att-options">
@@ -89,40 +152,42 @@
                             <label id="class-title">Your Class Title will go here after selecting two attributes</label>
                         </div>
                     </section>
-                    <section class="form-step" id="step4" style="display: none;">
+                    <section class="form-step" id="step5" style="display: none;">
                         <header>
                             <h3>Personality Quiz:</h3>
-                            <button type="button" onclick="lastStep(4)" class="back-button">Attributes / Class</button>
+                            <button type="button" onclick="lastStep(5)" class="back-button">Attributes / Class</button>
                             <button type="button" id="restart-button" onclick="startQuestionnaire()" class="next-button" style="display: none;">Restart</button>
+                            <button type="button" id="skip-button" onclick="skip_quiz()" class="next-button" style="display: none;">Skip</button>
                         </header>
                         <div id="quiz-restart">
                             <label id="quiz-ask">Would you like to take a test to determine class and personality?</label>
-                            <button type="button" onclick="nextStep(4)" id="skip" class="next-button">No</button>
+                            <button type="button" onclick="nextStep(5)" id="skip" class="next-button">No</button>
                             <button type="button" id="restart" onclick="startQuestionnaire()" class="next-button">Yes</button>
                         </div>
                         <section class="selection-box" id="quiz-box" style="display: none;">
                             <div id="title-container"><h2 id="question-title" style="display: none;"></h2></div>
                             <span id="options-container" style="display: none;"></span>
+                            <button type="button" id="quiz-back-button" style="display: none;">Previous Question</button>
                             <button type="button" id="quiz-button" style="display: none;">Next Question</button>
                         </section>
                     </section>
 
-                    <section class="form-step" id="step5" style="display: none;">
+                    <section class="form-step" id="step6" style="display: none;">
                         <header>
-                            <button type="button" onclick="lastStep(4)" class="back-button">Personality</button>
+                            <button type="button" onclick="lastStep(6)" class="back-button">Personality</button>
                             <h3>Describe your character:</h3>
                         </header>
                         <section id="desc-box">
                             <label>This is optional but if you would like to explain more about your character, this is where you can.</label>
                             <textarea id="character_desc" name="character_desc" rows="5" placeholder="Enter a short description of your character"></textarea>
-                            <button type="button" onclick="nextStep(5)" class="next-button">Results</button>
+                            <button type="button" onclick="nextStep(6)" class="next-button">Results</button>
                         </section>
                     </section>
                 </form>
-                <div class="form-step" id="step6" style="display: none;">
+                <div class="form-step" id="step7" style="display: none;">
                     <header>
                         <h2>Review and Move to the Game</h2>
-                        <button type="button" onclick="editForm()">Edit</button>
+                        <button type="button" id ="edit-button" onclick="editForm()">Edit</button>
                     </header>
                     <table id="character-info">
                         <tr>
@@ -146,7 +211,7 @@
                             <td><p id="class_description"></p></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><button type="button" onclick="submitForm()">Submit</button></td>
+                            <td colspan="2"><button type="button" id="submit-button" onclick="submitForm()">Submit</button></td>
                         </tr>
                     </table>   
                 </div>

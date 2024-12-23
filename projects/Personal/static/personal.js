@@ -22,6 +22,7 @@ var selected = [];
 var selectedSet = "";
 var selected_class = "";
 var personality = [];
+var char_num = 0;
 
 var curr_question = 0;
 var app_questions = [
@@ -243,6 +244,7 @@ function get_personality_name(MBTI) {
 }
 
 function discover(desc, att) {
+    console.log('It has made it into the discover function.')
     var full_att = character_data.att;
     console.log('Character_data.att: ', full_att)
     var personality_keys = ['e', 'i', 'n', 's', 'f', 't', 'p', 'j'];
@@ -326,14 +328,27 @@ function discover(desc, att) {
 
     return [type[0], type[1], MBTI];
 }
+function skip_quiz(){
+    nextStep(5);
+    showDescription();
+}
 function updateQuestion() {
-    /*document.getElementById("question-title").scrollIntoView({
+    document.getElementById("question-title").scrollIntoView({
         behavior: 'smooth',
         flex: 'start' 
-    });*/
+    });
+    let selectedOption = [];
     let questionContainer = document.getElementById("question-title");
     let optionsContainer = document.getElementById("options-container");
+    let prevButton = document.getElementById("quiz-back-button");
     let nextButton = document.getElementById("quiz-button");
+    if (curr_question === app_questions.length){
+        nextButton.innerHTML = "Submit";
+    }
+    else {
+        nextButton.innerHTML = "Next Question";
+    }
+
 
     // Clear previous options
     optionsContainer.innerHTML = "";
@@ -343,8 +358,8 @@ function updateQuestion() {
 
     // Create radio buttons for each option
     app_questions[curr_question].options.forEach((option, index) => {
-        let wrapDiv = document.createElement("span");
-        wrapDiv.classList.add("option-box");
+        let wrapSpan = document.createElement("span");
+        wrapSpan.classList.add("option-box");
         let optionLabel = document.createElement("label");
         let optionInput = document.createElement("input");
         optionInput.type = "radio";
@@ -352,17 +367,36 @@ function updateQuestion() {
         optionInput.value = option.attributes; // Value contains attribute updates
         optionLabel.appendChild(optionInput);
         optionLabel.appendChild(document.createTextNode(option.text));
-        wrapDiv.appendChild(optionLabel)
-        optionsContainer.appendChild(wrapDiv);
+        wrapSpan.appendChild(optionLabel)
+        optionsContainer.appendChild(wrapSpan);
         optionsContainer.appendChild(document.createElement("br"));
     });
 
+    prevButton.onclick = function() {
+        if (curr_question != 0){
+            let attributes = selectedOption.value.split(",");
+            for (let i = 0; i < attributes.length; i += 2) {
+                let attribute = attributes[i];
+                let value = parseInt(attributes[i + 1]);
+                if (!character_data.att[attribute]) {
+                    character_data.att[attribute] = 0;
+                }
+                character_data.att[attribute] -= value;
+            }
+            curr_question--;
+            updateQuestion();             
+        }
+    }
     // Next button event handler
     nextButton.onclick = function() {
         // Get selected radio button
         let selectedOption = document.querySelector('input[name="question' + curr_question + '"]:checked');
-
         if (!selectedOption) {
+            if (curr_question === app_questions.length){
+                curr_question = 0;
+                updateQuestion();
+                return;
+            }
             alert("Please select an option!");
             return;
         }
@@ -384,11 +418,13 @@ function updateQuestion() {
         if (curr_question < (quest_length - 1)) {
             updateQuestion(); // Update the UI with the next question
         } else if (curr_question === app_questions.length - 1) {
-            document.getElementById('quiz-button').innerHTML = "Submit";
+            nextButton.innerHTML = "Submit";
             updateQuestion();
         } else {
             // All questions have been answered, calculate the class
             calculateClass();
+            showDescription();
+            return;
         }
     };
 }
@@ -429,7 +465,7 @@ function calculateClass() {
     document.getElementById("question-title").innerHTML = `Your character's class is: ${character_class.class}`;
     document.getElementById("options-container").innerHTML = `Description: ${character_class.description}`;
     quiz_button.innerHTML = "Submit";
-    quiz_button.onclick = nextStep(4);
+    document.getElementById('quiz-button').addEventListener('click', nextStep(5));
 }
 
 function startQuestionnaire() {
@@ -437,17 +473,19 @@ function startQuestionnaire() {
     document.getElementById('quiz-restart').style.display = 'none';
     document.getElementById('quiz-box').style.display = 'flex';
     document.getElementById('restart-button').style.display='block';
+    document.getElementById('skip-button').style.display = 'block';
     document.getElementById('question-title').style.display = 'flex';
     document.getElementById('options-container').style.display = 'flex';
+    document.getElementById('quiz-back-button').style.display = 'block';
     document.getElementById('quiz-button').style.display = 'block';
     updateQuestion(); 
 }
 function showDescription() {
     document.getElementById("quiz-box").style.display = 'none';
-    document.getElementById("desc-box").style.display = "grid";
+    document.getElementById("desc-box").style.display = "flex";
 }
 function nextStep(currStep) {
-    if (currStep === 3) {
+    if (currStep === 4) {
         if (selectedAttributes.length > 2) {
             alert('Only two attributes can be selected');
             return;
@@ -461,8 +499,9 @@ function nextStep(currStep) {
         }
         sortedAttributes = selectedAttributes
     }
-    if (currStep === 5) {
+    if (currStep === 6) {
         document.getElementById('desc-box').style.display = 'none';
+        document.getElementById("edit-button").style.display = 'block';
         var person_name;
         var person_desc;
         var name_plate = document.getElementById('character_name');
@@ -485,6 +524,7 @@ function nextStep(currStep) {
         person_desc_label.innerHTML = person_desc;
         class_label.innerHTML = title(character_data.class);
         class_desc_label.innerHTML = character_data.description;
+        char_num++;
     }
 
     document.getElementById(`step${currStep}`).style.display = 'none';
@@ -497,6 +537,26 @@ function lastStep(currStep) {
     document.getElementById(`step${currStep}`).style.display = 'block'; 
 }
 function editForm(){
+    character_data.att = {
+        strength : 0,
+        intelligence : 0,
+        endurance : 0,
+        charisma : 0,
+        wisdom : 0,
+        agility : 0,
+        e : 0,
+        i : 0,
+        n : 0,
+        s : 0,
+        f : 0,
+        t : 0,
+        p : 0,
+        j : 0
+    };
+    document.getElementById("edit-button").style.display = 'none';
+    document.getElementById("submit-button").style.display = 'none';
+    document.getElementById("setting-table").style.display = 'none';
+    document.getElementById("setting-select").style.display = 'flex';
     document.getElementById('step6').style.display = 'none';
     document.getElementById('step1').style.display = 'flex';
 }

@@ -45,6 +45,11 @@ label {
 .selection-box {
     height: 100%;
     width: 100%;
+    border-radius: 20px;
+    background-color: var(--primary-color);
+}
+#setting-select {
+    height: auto;
 }
 input[type="text"],
 textarea,
@@ -57,9 +62,6 @@ select {
     text-align: center;
     border-radius: 25px;
     transform: scale(1.4rem)
-}
-.selection-box {
-    border-radius: 20px;
 }
 .name-plate {
     display: flex;
@@ -137,19 +139,31 @@ input[type="radio"]{
     transform: scale(1.7);
     margin-right: 5%;
 }
-#step6 {
+#step7 {
     margin-bottom: 50%;
 }
 #character-info {
     width: 100%;
     border-collapse: collapse; /* Remove space between table borders */
     margin: 20px 0; /* Space around the table */
+    background-color: var(--primary-color);
 }
 
+.input-table{
+    width: 100%;
+    border-collapse: collapse; /* Remove space between table borders */
+    margin: 20px 0; /* Space around the table */
+    background-color: var(--primary-color);
+}
 /* Style each table row */
 table tr {
     display: table-row;
     text-align: left; /* Align content to the left in each row */
+}
+#desc-box {
+    flex-direction: column;
+    background-color: var(--primary-color);
+    color: var(--accent1);
 }
 
 /* Style each table cell */
