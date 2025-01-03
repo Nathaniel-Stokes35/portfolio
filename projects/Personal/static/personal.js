@@ -661,7 +661,8 @@ function nextStep(currStep) {
         for (let i; i < selectedAttributes.length; i++) {
             character_data[att, selectedAttributes[i]] + 1;
         }
-        sortedAttributes = selectedAttributes
+        sortedAttributes = selectedAttributes;
+        console.log('This should build the Questionaire.');
         startQuestionnaire();
     }
     if (currStep === 5) {
