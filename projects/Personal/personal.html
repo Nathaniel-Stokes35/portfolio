@@ -26,6 +26,8 @@
                 <h3>Page Navigation</h3>
             </header>
             <section id="navigation">
+                <input type="file" id="upload-file" accept=".json" />
+                <button type="button" onclick="upload()" id="upload-btn">Upload</button>
                 <ul>
                     <li><a href="./personal.html">Character Creation</a></li>
                 </ul>
@@ -66,7 +68,7 @@
                                     </tr>
                                     <tr>    
                                         <td><label for="female-radio">Female</label></td>
-                                        <td><input type="radio" class="sex-radio" id= 'female-radio' name="sex" ></td>
+                                        <td><input type="radio" class="sex-radio" id= 'female-radio' name="sex" required></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -208,16 +210,11 @@
                             <button type="button" id="restart-button" onclick="startQuestionnaire()" class="next-button" style="display: none;">Restart</button>
                             <button type="button" id="skip-button" onclick="skip_quiz()" class="next-button" style="display: none;">Skip</button>
                         </header>
-                        <div id="quiz-restart">
-                            <label id="quiz-ask">Would you like to take a test to determine class and personality?</label>
-                            <button type="button" onclick="skip_quiz(5)" id="skip" class="next-button">No</button>
-                            <button type="button" id="restart" onclick="startQuestionnaire()" class="next-button">Yes</button>
-                        </div>
-                        <section class="selection-box" id="quiz-box" style="display: none;">
-                            <div id="title-container"><h2 id="question-title" style="display: none;"></h2></div>
-                            <span id="options-container" style="display: none;"></span>
-                            <button type="button" id="quiz-back-button" style="display: none;">Previous Question</button>
-                            <button type="button" id="quiz-button" style="display: none;">Next Question</button>
+                        <section class="selection-box" id="quiz-box">
+                            <div id="title-container"><h2 id="question-title"></h2></div>
+                            <span id="options-container"></span>
+                            <button type="button" id="quiz-back-button">Previous Question</button>
+                            <button type="button" id="quiz-button">Next Question</button>
                         </section>
                     </section>
 
@@ -239,6 +236,11 @@
                         <button type="button" id ="edit-button" onclick="editConfirm()">Edit</button>
                     </header>
                     <table id="character-info">
+                        <tr>
+                            <th><h4>Setting: </h4></th>
+                            <td><p id="character_setting"></p></td>
+                        </tr>
+                        <th><h2>Character:</h2></th>
                         <tr>
                             <td><h4>Character Name:</h4></td>
                             <td><p id="character_name"></p></td>

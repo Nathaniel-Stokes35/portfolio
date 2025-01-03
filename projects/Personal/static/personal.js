@@ -19,12 +19,33 @@ var character_data = {
 var selectedAttributes = [];
 var sortedAttributes = [];
 var selected = [];
-var selectedSet = "";
+var selected_set = "";
+var selected_sex = "";
 var selected_class = "";
 var personality = [];
 var char_num = 0;
 
 var curr_question = 0;
+var phaseMap = {
+    'spa': {
+        '1': './space/phase1.html',
+        '2': './space/phase2.html',
+        '3': './space/phase3.html',
+        '4': './space/phase4.html'
+    },
+    'fan': {
+        '1': './fantasy/phase1.html',
+        '2': './fantasy/phase2.html',
+        '3': './fantasy/phase3.html',
+        '4': './fantasy/phase4.html'
+    },
+    'pir': {
+        '1': './pirate/phase1.html',
+        '2': './pirate/phase1.html',
+        '3': './pirate/phase1.html',
+        '4': './pirate/phase1.html'
+    }
+};
 var app_questions = [
     {
         question : "Your friend presents you with a complicated puzzle on the bus, that you've never seen before. The puzzle is interesting and your friend seems excited to have you try.", 
@@ -117,37 +138,157 @@ var app_questions = [
             { text: "Explode a firecracker in a barrel next to one of your coworkers right before they doze off.", attributes: "j,1,t,1"}
         ]}
 ];
+
+// This needs to be reset at the start of each question
+let decisionStartTime = Date.now();  // Start tracking time when the player sees the options
+
+// When the player selects an option
+function trackDecision(choice) {
+    let decisionTime = Date.now() - decisionStartTime; // Calculate how long they took
+    console.log('Time taken for decision:', decisionTime, 'ms');
+
+    // Now, store the decision along with the time spent
+    decisionHistory.push({
+        choice: choice,
+        timeSpent: decisionTime,
+        timestamp: new Date().toISOString()
+    });
+}
+
+function updatePhase(set, num) {
+    character_data.set = set;
+    character_data.phase = num;
+}
+function redirectToCorrectPage(setting, phase) {
+    if (phaseMap[setting] && phaseMap[setting][phase]) {
+        window.location.href = phaseMap[setting][phase];
+    } else {
+        alert('Invalid setting or phase!');
+    }
+}
+function download() {
+    const characterDataJSON = JSON.stringify(character_data, null, 2);
+    const blob = new Blob([characterDataJSON], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'character.json';
+    link.click();
+}
+function upload() {
+    const fileInput = document.getElementById('upload-file');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Please select a character file to upload.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const fileContent = event.target.result;
+        try {
+            const characterData = JSON.parse(fileContent);
+            loadCharacter(characterData);
+            alert('Character loaded successfully!');
+        } catch (error) {
+            alert('Failed to load character data.');
+            console.error(error);
+        }
+    };
+    reader.readAsText(file);
+
+    function loadCharacter(characterData) {
+        character_data = characterData;
+        redirectToCorrectPage(characterData.set, characterData.phase)
+    }
+}
 function title(word) {
     var words = word.split(' ');
-    for (let i = 0; i < words.length; i += 1) {
-        if (i === 0 || !['of', 'a', 'the'].includes(words[i].toLowerCase())) {
-            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
-        } else {
-            words[i] = words[i].toLowerCase();
-        }
+    if (word === 'spa') {
+        return 'Space';
     }
-    return words.join(' ')
+    else if (word === 'fan') {
+        return 'Fantasy';
+    }
+    else if (word === 'pir') {
+        return 'Pirate';
+    }
+    else {
+        for (let i = 0; i < words.length; i += 1) {
+            if (i === 0 || !['of', 'a', 'the'].includes(words[i].toLowerCase())) {
+                words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+            } else {
+                words[i] = words[i].toLowerCase();
+            }
+        }
+        return words.join(' ')
+    }
 }
 function class_check(att, set) {
     let [first_att, second_att] = att.slice(0, 2)
 
     const class_mapping = {
         'spa': {
-            'str-int': { 'class': 'shock-trooper', 'description': 'A powerful leader who excels in close combat and strategic planning.' },
-            'str-agi': { 'class': 'tactician', 'description': 'A survivor who relies on agility and quick thinking to outmaneuver enemies.' },
-            'str-wis': { 'class': 'war-hero', 'description': 'A resourceful survivor with knowledge of tactics and survival skills.' },
-            'str-cha': { 'class': 'smuggler', 'description': 'A charismatic diplomat who can talk their way out of almost any situation.' },
-            'str-end': { 'class': 'survivalist', 'description': 'A hardy survivor focused on enduring the harshest environments.' },
-            'int-agi': { 'class': 'hacker', 'description': 'A tech-savvy individual who can manipulate systems and hack into networks.' },
-            'int-wis': { 'class': 'doctor', 'description': 'A skilled medic who can heal wounds and treat ailments with precision.' },
-            'int-cha': { 'class': 'embassy-diplomat', 'description': 'A charming negotiator who excels in diplomatic relations.' },
-            'int-end': { 'class': 'researcher', 'description': 'A methodical and curious individual dedicated to discovering new technologies.' },
-            'agi-wis': { 'class': 'stowaway', 'description': 'A stealthy individual who can blend into the background and avoid detection.' },
-            'agi-cha': { 'class': 'scoundrel', 'description': 'A charming and agile rogue who uses wit and cunning to outsmart their foes.' },
-            'agi-end': { 'class': 'scout', 'description': 'A quick and observant individual who excels at reconnaissance and exploration.' },
-            'wis-cha': { 'class': 'squad-leader', 'description': 'A seasoned leader who can command troops with wisdom and authority.' },
-            'wis-end': { 'class': 'worker', 'description': 'A general extra hand on the ship. You\'re here to get a paycheck.' },
-            'cha-end': { 'class': 'commander', 'description': 'A charismatic and strategic leader, known for their decisive nature and tactical mind.' }
+            'str-int': { 
+                'class': 'shock-trooper', 
+                'description': 'A decisive leader who excels in combat and thrives in structured environments. Prefers action over theory, but knows when to plan ahead.' // ESTJ - Strong, logical, and structured.
+            },
+            'str-agi': { 
+                'class': 'tactician', 
+                'description': 'A tactician is quick-thinking and adaptable, always making split-second decisions that turn the tide of battle. Strength of character, speed of mind, and actions, will always keep them a step ahead of the unexpected.' // ESTP - Action-oriented and practical.
+            },
+            'str-wis': { 
+                'class': 'war-hero', 
+                'description': 'A battle-hardened survivor who leads with wisdom and experience. Calm under pressure, their knowledge and strength of character can inspire and also empower those around them.' // ESFJ - Supportive, wise, and community-oriented.
+            },
+            'str-cha': { 
+                'class': 'smuggler', 
+                'description': 'A persuasive negotiator, using charm and wit to talk their way through difficult situations. To a smuggler their ship, and their friends, are the only things worth keeping around.' // ENFP - Enthusiastic, creative, and empathetic.
+            },
+            'str-end': { 
+                'class': 'survivalist', 
+                'description': 'A gritty individual who thrives under pressure. Prepared for anything, relying on resourcefulness and an unshakable resolve to push through whatever comes their way, no matter what the next open door brings.' // ISTJ - Practical, dependable, and resilient.
+            },
+            'int-agi': { 
+                'class': 'hacker', 
+                'description': 'Master of technology and systems, hackers outthink and outmaneuver technology, and anyone that tries to get in their way, with a sharp mind and quicker reflexes.' // INTP - Analytical, inventive, and logical.
+            },
+            'int-wis': { 
+                'class': 'doctor', 
+                'description': 'A calm, methodical healer who thrives under pressure. Doctors use their extensive knowledge to save lives in even the direst situations.' // INFP - Thoughtful, empathetic, and insightful.
+            },
+            'int-cha': { 
+                'class': 'embassy-diplomat', 
+                'description': 'A skilled negotiator who builds bridges and guides conversations. A Diplomat\'s charisma and quick thinking help them navigate tense situations, staying in control while staying ahead of trouble.' // ENFJ - Charismatic, empathetic, and visionary.
+            },
+            'int-end': { 
+                'class': 'researcher', 
+                'description': 'A curious and driven loner, a researcher dives deep into problems and embraces the grind. Their quest for knowledge shapes every move, no matter how dangerous the path or high the cost may be.' // INTJ - Visionary, strategic, and focused.
+            },
+            'agi-wis': { 
+                'class': 'stowaway', 
+                'description': 'The stowaway is an opportunistic figure, moving unseen in the galaxy\'s underbelly, almost forgotten. Staying alive by knowing when to act, and when to wait, weighing their next move in silence. The environment may be cold, the people harsh, but it will always be home.' // INFJ - Insightful, introspective, and visionary.
+            },
+            'agi-cha': { 
+                'class': 'scoundrel', 
+                'description': 'A quick-witted rogue who talks their way in or out of anything. With speed and charm, they\'re always a step ahead of the mark.' // ENTP - Creative, curious, and assertive.
+            },
+            'agi-end': { 
+                'class': 'scout', 
+                'description': 'A scout is quick to adapt, moving through hostile territory with practiced ease. Every step is measured, balancing speed with the patience to wait when the going gets tough. They strike when the time is right, vanishing out of reach, always a step ahead of threats.' // ISTP - Practical, independent, and resourceful.
+            },
+            'wis-cha': { 
+                'class': 'squad-leader', 
+                'description': 'A squad-leader is a natural guide, balancing wisdom and charisma. With experience as their foundation, they know when to assert authority and when to offer support, drawing the best from their team while maintaining unity and focus.' // ENFJ - Inspiring, compassionate, and strategic.
+            },
+            'wis-end': { 
+                'class': 'worker', 
+                'description': 'A steady and reliable presence, a good worker keeps the team grounded and moving forward. Taking pride in every task, they find purpose in the effort and fulfillment in seeing things through to completion, regardless of the spotlight.' // ISFJ - Supportive, reliable, and diligent.
+            },
+            'cha-end': { 
+                'class': 'commander', 
+                'description': 'A decisive leader that thrives when having to make the tough decisions. The Commander\'s charisma inspires loyalty, while their unwavering confidence keeps the team moving forward, even when the odds—and the universe—are against them.' // ENTJ - Assertive, strategic, and confident.
+            }
         },
         'fan': {
             'str-int': { 'class': 'battle mage', 'description': 'A mage who combines martial prowess with magical abilities for devastating results.' },
@@ -285,8 +426,8 @@ function discover(desc, att) {
         if (att_modifiers[attribute]) {
             var modifiers = att_modifiers[attribute];
 
-            person_scores[0] += modifiers[0] * att_weight
-            person_scores[1] -= modifiers[0] * att_weight
+            person_scores[0] += modifiers[0] * att_weight //1
+            person_scores[1] -= modifiers[0] * att_weight //-1
             
             person_scores[2] += modifiers[1] * att_weight
             person_scores[3] -= modifiers[1] * att_weight
@@ -455,7 +596,7 @@ function calculateClass() {
     console.log("Shortened Top Attributes: ", topAttributes)
 
     // Use class_check function to determine the class based on attributes and theme
-    let character_class = class_check(topAttributes, selectedSet);
+    let character_class = class_check(topAttributes, character_data.set);
     console.log("Character Class: ", character_class)
 
     // Update character class and description
@@ -477,7 +618,6 @@ function calculateClass() {
 function startQuestionnaire() {
     curr_question = 0;
     quiz = true;
-    document.getElementById('quiz-restart').style.display = 'none';
     document.getElementById('quiz-box').style.display = 'flex';
     document.getElementById('restart-button').style.display='block';
     document.getElementById('skip-button').style.display = 'block';
@@ -492,6 +632,23 @@ function showDescription() {
     document.getElementById("desc-box").style.display = "flex";
 }
 function nextStep(currStep) {
+    if (currStep === 2) {
+        selected_sex = document.querySelector('input[name="sex"]:checked').value;
+        if (!selected_sex) {
+            alert("You must choose a sex.")
+            return;
+        }
+        character_data.sex = selected_sex
+    }
+    if (currStep === 3) {
+        selected_set = document.querySelector('input[name="setting"]:checked').value;
+        if (!selected_set) {
+            alert("You must choose a setting for the story.")
+            return;
+        }
+        character_data.set = selected_set
+        console.log('character_data.set: ', character_data.set);
+    }
     if (currStep === 4) {
         if (selectedAttributes.length > 2) {
             alert('Only two attributes can be selected');
@@ -505,6 +662,7 @@ function nextStep(currStep) {
             character_data[att, selectedAttributes[i]] + 1;
         }
         sortedAttributes = selectedAttributes
+        startQuestionnaire();
     }
     if (currStep === 5) {
         showDescription();
@@ -515,6 +673,7 @@ function nextStep(currStep) {
         document.getElementById("submit-button").style.display = 'block';
         var person_name;
         var person_desc;
+        var set_plate = document.getElementById('character_setting');
         var name_plate = document.getElementById('character_name');
         var personality_label = document.getElementById('personality_name');
         var person_desc_label = document.getElementById('personality_description');
@@ -527,9 +686,11 @@ function nextStep(currStep) {
         person_name = personality[0];
         person_desc = personality[1];
         person_type = personality[2];
+        character_data.personality = personality;
         console.log('Returned Discover Variable: ', personality)
         console.log("Personality Name: ", person_name)
 
+        set_plate.innerHTML = title(character_data.set);
         name_plate.innerHTML = character_data.name;
         personality_label.innerHTML = title(person_name);
         person_desc_label.innerHTML = person_desc;
@@ -584,7 +745,24 @@ function editForm() {
     document.getElementById('step6').style.display = 'none';
     document.getElementById('step1').style.display = 'flex';
 }
-
+function submitForm() {
+    localStorage.setItem('characterData', JSON.stringify(character_data));
+    console.log(character_data.set)
+    if (character_data.set === 'spa') {
+        console.log('Successfully got within correct if statement')
+        window.location.href = './space/phase1.html';
+    }
+    else if (character_data.set === 'fan') {
+        window.location.href = './fantasy/phase1.html';
+    }
+    else if (character_data.set === 'pir') {
+        window.location.href = './pirate/phase1.html';
+    }
+    else {
+        alert('No setting selected; Please choose a setting');
+        return;
+    }
+}
 function checkName() {
     var nameValue = document.getElementById('name').value.trim();
     

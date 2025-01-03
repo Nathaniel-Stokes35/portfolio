@@ -16,13 +16,12 @@ label {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    padding: 1.7%;
+    padding: 1%;
     border-radius: 25px;
     background-color: var(--primary-color);
     font-size: 1.4rem;
     text-align: center;
     align-items: center;
-    justify-content: space-around;
 }
 #characterForm {
     display: flex;
@@ -30,8 +29,8 @@ label {
     margin-top: 1%;
     align-items: center;
     justify-content: space-around;
-    height: 90%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
 }
 .form-step {
     align-items: center;
@@ -46,6 +45,8 @@ label {
     height: 100%;
     width: 100%;
     border-radius: 20px;
+    align-items: center;
+    margin: 0;
     background-color: var(--primary-color);
 }
 #setting-select {
@@ -56,12 +57,23 @@ textarea,
 button,
 select {
     font-size: 1.4rem;
-    width: 75%;
+    width: 55%;
     padding: 5%;
     margin: 1%;
     text-align: center;
     border-radius: 25px;
     transform: scale(1.4rem)
+}
+input[type="file"] {
+    font-size: 85%;
+    padding: 10px 20px;
+    height: 50px;
+    cursor: pointer;
+}
+#step5 {
+    width: 100%;
+    
+
 }
 .name-plate {
     display: flex;
@@ -108,7 +120,18 @@ select {
     font-size: 1.6rem;
     height: 100vh;
     padding-top: 3%;
-    align-items: flex-start;
+}
+#options-container span {
+    display:flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width:100%;
+}
+#options-container input {
+    padding-right: 100%;
+    flex-direction: column;
+    align-items: flex-start; 
 }
 #wrapDiv {
     display: flex;

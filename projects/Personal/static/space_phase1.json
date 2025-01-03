@@ -1,0 +1,64 @@
+{
+    "archetype": "Leader",
+    "scene_number" : "1",
+    "scenes": {
+        "general_event": {
+            "narrative": "\"Sir!\" \nThe sudden shock of hearing a fresh cadets plea alerts your attention. \"There appears to be a ship off our bow and it looks like it is gearing its weapons for a possible assualt on our vessel.\" Still half-paying attention you move to look at the fresh cadet, smothered in sweat. You wonder if he has gotten any sleep since we have left the port on Ralgerius 3 days ago. \"What are our orders, sir?\"",
+            "choices": [
+                {
+                "text": "\"I know you are scared cadet but at times like these we need to stay calm, you know more about what's going on. What do you think we should do?\"",
+                "action": "inspire"
+                },
+                {
+                "text": "With all the people on board they are trying to catch us off guard and assume we will try to avoid a direct confrontation so they won't be prepared for a real battle. \"Cadet, Man your post, They are not going to bring us down without a fight.\"", 
+                "action": "combat"
+                },
+                {
+                "text": "\"We need to know everything we can about them, fast. Why do they think we're a threat? Have you been able to secure any other intel on the ship, what makes you say they are preparing to assualt us?\" This is a Routine mission, What is going on?", 
+                "action": "research"
+                }
+            ]
+        },
+        "class_event": {
+            "commander": {
+                "narrative": "The Research Vessel's constant, almost rhythmic, activity usually lends itself to helping you relax. You find yourself unable to sleep, weighed down by the upcoming meeting with the outer-region dignitaries. The political tension hanging in the air as the fate of entire systems may rest on their words. Some poor diplomatic handlings by rogue traders, but there is also this trip, despite being your third on this route in the last year, feels like it's leading us into unknown and dangerous territory. The empty void of space has never felt less familiar, and the uncertainty about what lies ahead has you on edge—",
+                "choices" : [
+                    {
+                        "text": "\"We need to understand their intentions first. Let's open up communication and see if we can de-escalate before things go south.\"", 
+                        "action": "diplomat"
+                    },
+                    {
+                        "text": "I need to take command of this. \"Let's deploy a drone and gather intel. We'll act decisively once we know more, no more guessing.\"", 
+                        "action": "investigate"
+                    }
+                ]
+            },
+            "squad-leader": {
+                "narrative": "The Research Vessel hums with quiet energy as you try to rest. The hum of the vessel is a constant drone, like the pulse of a beating heart—steady, but strangely unsettling in its consistency. You can't shake the nagging feeling that something is wrong. You've seen enough to know when things don't sit right. Everything about this mission feels off. They've got you and your squad on \"extra security\" for a diplomatic mission, but it's hard to ignore the truth—this isn't what you and your crew are made for. You're here to babysit the colony delegates and embassy-diplomats, but that's all it is: a babysitting job. You don't even think the outer-region delegates had their own security brought on board. In all your years on the front lines, during missions with real danger, you've never been asked to just watch over people who have no clue about space, or how many ways you can die out here. \"I don't know, there's something off...\" You sit on your bed, staring into the quiet emptiness of your quarters. The thought lingers—\"Something doesn't feel right about this.\" You can't shake the feeling of being sidelined. As you lie there, trying to refocus, you don't even hear the door to your quarters open.",
+                "choices": [
+                    {
+                        "text": "I need to calm the squad. They need to be prepared for whatever comes next. \"Cadet, you've been trained, you've been seasoned. No matter what some random nobody is going to throw at us, we'll be able to brush it off like we're just in a game of dodgeball.", 
+                        "action": "calm"
+                    },
+                    {
+                        "text": "We need to know what we're up against. \"Jenkins, you know the drill—send a scout to gather intel, but make sure they don't get spotted. No surprises this time.\"",
+                        "action" : "investigate"
+                    }
+                ]
+            },
+            "shock-trooper": {
+                "narrative": "The hum of the Research Vessel and the rhythmic vibrations beneath your feet usually help you zone out, but tonight it's different. Something feels wrong. You've been through enough to know that feeling, the one that creeps up your spine and won't let go. In all your years in the field, it's always when things go quiet you need to worry, and this mission, while routine on the surface, has been anything but. The higher-ups brought in an additional team for security detail, and you don't know them. That alone is enough to make you uneasy. This ship was supposed to be straightforward, just ferrying diplomats through space and letting the researchers work on their \"projects\"—but the cargo traffic, the unusual comms silence from your usual contacts with the cartels, and the subtle changes in the air just make you feel like there's something more going on. You've been told to stay on standby, to wait for orders as the negotiations take place, and it doesn't sit well with you. You've seen this before— everything's going to go smooth, or it's going to go sideways fast. And with the silence in the air... you're betting on the latter.",
+                "choices" : [
+                    {
+                        "text": "We'll get a readout of their systems from the command deck before getting in my two-man fighter in the cargo bay, to jump ship. We'll hit thier weak points and overwhelm them with decisive force leaving them no time to react. \"We're not waiting around for them to make the first move. Let's hit them hard, hit them fast, and show them who they decided to mess with.\"", 
+                        "action": "charge"
+                    },
+                    {
+                        "text": "This could turn into a drawn-out fight, so we need to dig in and prepare. Strong positions, clear exit strategies. If they want a fight, let's make sure we control the ground. \"Let's fortify the positions and hold the line until we have the full intel. Let them come, but make them regret it.\"",
+                        "action": "tactical"
+                    }
+                ]
+            }
+        }
+    }
+}
