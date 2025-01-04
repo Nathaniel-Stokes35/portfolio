@@ -70,7 +70,7 @@ var app_questions = [
         options : [
             { text: "Keep moving forward, pushing through exhaustion and fear, determined to find a way out no matter how long it takes.", attributes: "endurance,1,strength,1"}, 
             { text: "Start by finding shelter and food, preparing to endure the night with what little resources you have.", attributes: "endurance,1,wisdom,1"}, 
-            { text: "Sit down and try to focus, conserving your energy while thinking of the best way to escape or survive.", attributes: "endurance,1,intelligence,1"}, 
+            { text: "Trying to focus, you conserve your energy and start looking for water; whether to wait or have it lead you back to civilization.", attributes: "endurance,1,intelligence,1"}, 
             { text: "Shout for help, hoping that someone can hear you, continuing to look for an exit but beginning to get worried about how much longer you can make it alone.", attributes: "endurance,-1,charisma,1"}, 
             { text: "Start walking in a specific direction, hoping to find a way out, focusing on staying calm and pushing through.", attributes: "endurance,1,agility,1"}
         ]},
@@ -115,7 +115,7 @@ var app_questions = [
         options : [
             { text: "try and recall the time you went to your mom's house, closing your eyes to mentally recreate the directions you took", attributes: "n,1,t,1"},
             { text: "Look around trying to find a possible landmark or something familiar that can help you get back on track.", attributes: "s,1,j,1"},
-            { text: "Look around and knock on a door, seeing if you can be given directions. It's Practical but could be dangerous, if you knock on the wrong door.", attributes: "s,0,e,1"},
+            { text: "Look around and knock on a door, seeing if someone's home and can give you directions.", attributes: "s,0,e,1"},
             { text: "Follow the path you were walking down earlier. After all, you *must* have been going in the right direction at the start.", attributes: "n,1,j,1"},
             { text: "Pull out your map and try to figure out where you are and where you need to be.", attributes: "s,1,t,1"}
         ]},
@@ -133,7 +133,7 @@ var app_questions = [
         options : [
             { text: "Lounge with them, if it's a group effort we can't all get in trouble.", attributes: "p,1,e,1"},
             { text: "Watch and wait for everyone else to get motivated, they know the work needs to be completed as much as you do.", attributes: "p,1,s,1"},
-            { text: "Talk with a friend, maybe you can motivate him and together you can get the group working.", attributes: "j,0,t,1"},
+            { text: "Just start working, maybe your commitment will motivate the others.", attributes: "j,0,t,1"},
             { text: "Grab a nearby pan and wooden spoon, walk around everyone banging the pan with the spoon and telling everyone to get up.", attributes: "j,1,e,1"},
             { text: "Explode a firecracker in a barrel next to one of your coworkers right before they doze off.", attributes: "j,1,t,1"}
         ]}
