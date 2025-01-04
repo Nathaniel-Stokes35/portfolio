@@ -129,8 +129,8 @@ input[type="file"] {
     font-size: 1.6rem;
     height: 20vh;
     padding-top: 3%;
-    padding-bottom: 25vh;
     flex-grow: 0;
+    box-sizing: content-box;
     
 }
 #options-container span {
@@ -154,8 +154,9 @@ input[type="file"] {
     flex-direction: column;
     max-height: 20vh;
     border-radius: 25px;
-    padding-bottom: 20vh;
-    padding-top: 40vh;
+    padding-bottom: 2vh;
+    padding-top: 1vh;
+    box-sizing: content-box;
 }
 #wrapDiv {
     display: flex;
