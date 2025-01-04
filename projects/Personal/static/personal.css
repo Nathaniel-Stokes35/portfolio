@@ -139,6 +139,7 @@ input[type="file"] {
     text-align: center;
     justify-content: center;
     width:100%;
+    padding-top: 2%;
     flex-grow: 0;
 }
 #options-container input {
