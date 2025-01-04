@@ -512,18 +512,32 @@ function updateQuestion() {
 
     // Create radio buttons for each option
     app_questions[curr_question].options.forEach((option, index) => {
-        let wrapSpan = document.createElement("span");
-        wrapSpan.classList.add("option-box");
-        let optionLabel = document.createElement("label");
+        // Create a table row
+        let row = document.createElement("tr");
+
+        // Create a table cell for the radio button
+        let radioCell = document.createElement("td");
         let optionInput = document.createElement("input");
         optionInput.type = "radio";
         optionInput.name = "question" + curr_question; // Ensure only one selection per question
         optionInput.value = option.attributes; // Value contains attribute updates
-        optionLabel.appendChild(optionInput);
-        optionLabel.appendChild(document.createTextNode(option.text));
-        wrapSpan.appendChild(optionLabel)
-        optionsContainer.appendChild(wrapSpan);
-        optionsContainer.appendChild(document.createElement("br"));
+        optionInput.id = "option" + curr_question + "_" + index; // Give a unique ID to each radio button
+    
+        radioCell.appendChild(optionInput);
+    
+        // Create a table cell for the label
+        let labelCell = document.createElement("td");
+        let optionLabel = document.createElement("label");
+        optionLabel.setAttribute("for", optionInput.id); // Associate the label with the radio button by its ID
+        optionLabel.appendChild(document.createTextNode(option.text)); // Label text
+        labelCell.appendChild(optionLabel);
+    
+        // Append the cells to the row
+        row.appendChild(radioCell);
+        row.appendChild(labelCell);
+    
+        // Append the row to the table
+        optionsContainer.appendChild(row);
     });
 
     prevButton.onclick = function() {
