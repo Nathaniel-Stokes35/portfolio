@@ -770,6 +770,8 @@ function editForm() {
     document.getElementById("setting-select").style.display = 'flex';
     document.getElementById('step6').style.display = 'none';
     document.getElementById('step1').style.display = 'flex';
+    document.body.style.overflow = "auto";
+    document.getElementById('cyoag-box').style.flexDirection = "column";
 }
 function submitForm() {
     localStorage.setItem('characterData', JSON.stringify(character_data));
