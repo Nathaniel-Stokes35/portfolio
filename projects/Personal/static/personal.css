@@ -80,7 +80,6 @@ input[type="file"] {
 }
 #step5 {
     width: 100%;
-    max-height: 80%;
     overflow: hidden;
 }
 .name-plate {
@@ -94,6 +93,7 @@ input[type="file"] {
 #att-box {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 .labels label {
     font-size: 2rem;
