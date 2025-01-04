@@ -491,10 +491,6 @@ function skip_quiz(){
     showDescription();
 }
 function updateQuestion() {
-    document.getElementById("question-title").scrollIntoView({
-        behavior: 'smooth',
-        flex: 'start' 
-    });
     let questionContainer = document.getElementById("question-title");
     let optionsContainer = document.getElementById("options-container");
     let prevButton = document.getElementById("quiz-back-button");
