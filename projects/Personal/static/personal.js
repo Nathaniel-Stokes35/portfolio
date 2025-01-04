@@ -18,7 +18,7 @@ var character_data = {
 };
 var selectedAttributes = [];
 var sortedAttributes = [];
-var selected = [];
+var selectedOption = [];
 var selected_set = "";
 var selected_sex = "";
 var selected_class = "";
@@ -50,92 +50,92 @@ var app_questions = [
     {
         question : "Your friend presents you with a complicated puzzle on the bus, that you've never seen before. The puzzle is interesting and your friend seems excited to have you try.", 
         options : [
-            { text: "Study the puzzle attempting new ways to approach the problems it presents, not putting it down until it's solved.", attributes: "intelligence,1,endurance,1"},
-            { text: "Chuckle at the notion he'd assume you would care. Snap the puzzle in two and hand it back to him still chuckling as you walk away.", attributes: "intelligence,-1,strength,1"},
-            { text: "Study the puzzle briefly, weighing whether you can solve it. Looking around you see a kid sitting behind you, you turn and dare him to solve it.", attributes: "intelligence,1,charisma,1"},
-            { text: "Watch your friend's reaction to the different ways you handle the puzzle, trying to find a clue as to how it's solved.", attributes: "intelligence,1,wisdom,1"},
-            { text: "Analyzing the puzzle, you notice how the pieces move together, knowing if you're quick enough with your movements you can bypass a major segement of the puzzle alltogether.", attributes: "intelligence,1,agility,1"}
+            { text: "Study the puzzle attempting new ways to approach the problems it presents, not putting it down until it's solved.", attributes: "intelligence,1,endurance,1,i,1,t,1"},
+            { text: "Chuckle at the notion he'd assume you would care. Snap the puzzle in two and hand it back to him still chuckling as you walk away.", attributes: "intelligence,-1,strength,1,n,1,j,1"},
+            { text: "Study the puzzle briefly, weighing whether you can solve it. Looking around you see a kid sitting behind you, you turn and dare him to solve it.", attributes: "intelligence,1,charisma,1,e,1,p,1"},
+            { text: "Watch your friend's reaction to the different ways you handle the puzzle, trying to find a clue as to how it's solved.", attributes: "intelligence,1,wisdom,1,e,1,s,1"},
+            { text: "Analyzing the puzzle, you notice how the pieces move together, knowing if you're quick enough with your movements you can bypass a major segement of the puzzle alltogether.", attributes: "intelligence,1,agility,1,s,1,t,1"}
         ]},
     {
         question : "You're participating in an athletic competition when you see someone you like watching you, wanting to impress them you...", 
         options : [
-            { text: "Find the heaviest peice of equipment hoping to hoist it over your shoulder and showing them how much you can handle.", attributes: "strength,1,endurance,1"},
-            { text: "You quickly analyze and preform what would provide the most \"awe\" that you can safely do without too much effort.", attributes: "strength,-1,intelligence,1"},
-            { text: "Give them a wink as you flex, then a soft smile as you complete your menuvear in the flashiest of ways.", attributes: "strength,1,charisma,1"},
-            { text: "Remember what they said to you about what they enjoyed in your practice, Begin to show them the results of your training.", attributes: "strength,1,wisdom,1"},
-            { text: "Hoping to show off, you quickly assess the best way to move through the competition, relying on your strength and quick movements to impress them with your speed.", attributes: "strength,1,agility,1"}
+            { text: "Find the heaviest peice of equipment hoping to hoist it over your shoulder and showing them how much you can handle.", attributes: "strength,1,endurance,1,e,1,j,1"},
+            { text: "You quickly analyze and preform what would provide the most \"awe\" that you can safely do without too much effort.", attributes: "strength,-1,intelligence,1,i,1,n,1"},
+            { text: "Give them a wink as you flex, then a soft smile as you complete your menuvear in the flashiest of ways.", attributes: "strength,1,charisma,1,n,1,f,1"},
+            { text: "Remember what they said to you about what they enjoyed in your practice, Begin to show them the results of your training.", attributes: "strength,1,wisdom,1,n,1,t,1"},
+            { text: "Hoping to show off, you quickly assess the best way to move through the competition, relying on your strength and quick movements to impress them with your speed.", attributes: "strength,1,agility,1,s,1,f,1"}
         ]},
     {
         question : "You've found yourself stranded and lost in some dark woods, whether you came here intentionally or by accident doesn't matter, what do you do?", 
         options : [
-            { text: "Keep moving forward, pushing through exhaustion and fear, determined to find a way out no matter how long it takes.", attributes: "endurance,1,strength,1"}, 
-            { text: "Start by finding shelter and food, preparing to endure the night with what little resources you have.", attributes: "endurance,1,wisdom,1"}, 
-            { text: "Trying to focus, you conserve your energy and start looking for water; whether to wait or have it lead you back to civilization.", attributes: "endurance,1,intelligence,1"}, 
-            { text: "Shout for help, hoping that someone can hear you, continuing to look for an exit but beginning to get worried about how much longer you can make it alone.", attributes: "endurance,-1,charisma,1"}, 
-            { text: "Start walking in a specific direction, hoping to find a way out, focusing on staying calm and pushing through.", attributes: "endurance,1,agility,1"}
+            { text: "Keep moving forward, pushing through exhaustion and fear, determined to find a way out no matter how long it takes.", attributes: "endurance,1,strength,1,j,1,t,1"}, 
+            { text: "Start by finding shelter and food, preparing to endure the night with what little resources you have.", attributes: "endurance,1,wisdom,1,j,1,s,1"}, 
+            { text: "Trying to focus, you conserve your energy and start looking for water; whether to wait or have it lead you back to civilization.", attributes: "endurance,1,intelligence,1,n,1,t,1"}, 
+            { text: "Shout for help, hoping that someone can hear you, continuing to look for an exit but beginning to get worried about how much longer you can make it alone.", attributes: "endurance,-1,charisma,1,e,1,p,1"}, 
+            { text: "Start walking in a specific direction, hoping to find a way out, focusing on staying calm and pushing through.", attributes: "endurance,1,agility,1,p,1,t,1"}
         ]},
     {
         question : "You are at a friends party and the games are about to start but you notice your friend doesn't seem all that interested, so you ...", 
         options : [
-            { text: "Walk over to your friend, put your arm around them, and pull them towards the group with a playful but firm challenge and invitation.", attributes: "charisma,1,strength,1"}, 
-            { text: "You come up with an exciting and interesting new way to play the game hoping it will arouse their curiosity.", attributes: "charisma,1,intelligence,1"}, 
-            { text: "Calmly walk over and engage in a heart to heart, trying to understand what might be throwing them off and listening to what they have to say.", attributes: "charisma,1,wisdom,1"}, 
-            { text: "Comically waddle over to them trying your best to make them laugh. Acting Loud you demand the game move to the pair of you; hoping to get them involved with your lively energy.", attributes: "charisma,1,agility,1"}, 
-            { text: "Ignoring them you continue to have fun at the party, you won't let their bad mood spoil your fun.", attributes: "charisma,-1,endurance,1"}
+            { text: "Walk over to your friend, put your arm around them, and pull them towards the group with a playful but firm challenge and invitation.", attributes: "charisma,1,strength,1,j,1,s,1"}, 
+            { text: "You come up with an exciting and interesting new way to play the game hoping it will arouse their curiosity.", attributes: "charisma,1,intelligence,1,e,1,t,1"}, 
+            { text: "Calmly walk over and engage in a heart to heart, trying to understand what might be throwing them off and listening to what they have to say.", attributes: "charisma,1,wisdom,1,e,1,f,1"}, 
+            { text: "Comically waddle over to them trying your best to make them laugh. Acting Loud you demand the game move to the pair of you; hoping to get them involved with your lively energy.", attributes: "charisma,1,agility,1,n,1,p,1"}, 
+            { text: "Ignoring them you continue to have fun at the party, you won't let their bad mood spoil your fun.", attributes: "charisma,-1,endurance,1,i,1,j,1"}
         ]},
     {
         question : "You come across a difficult scene after a hard day of work, it looks like some children have encountered the neighborhood cat dead in the allyway next to your home. You decide to... ", 
         options : [
-            { text: "Take a deep breath, crouch down, and calmly explain to the children what has happened, offering them reassurance and suggesting they leave the area to play and get their minds off of it.", attributes: "wisdom,1,charisma,1"}, 
-            { text: "Pause for a moment, reflecting on how to best help the children process their feelings, then you gently lead them away from the scene, offering a quiet, comforting presence.", attributes: "wisdom,1,endurance,1"}, 
-            { text: "Call animal control, keeping the children safe and out of harm's way, while ensuring proper steps are taken to not attract more wildlife.", attributes: "wisdom,-1,intelligence,1"}, 
-            { text: "say nothing to the children, not wanting to disturb their innocence. With a heavy heart you simply gather the cat and move it away, not making eye-contact or acknowledging any of the children.", attributes: "wisdom,1,strength,1"}, 
-            { text: "Assess the situation thoughtfully, then offer to guide the children through a ritual of saying goodbye to the cat, helping them understand the natural cycle of life and death.", attributes: "wisdom,1,agility,1"}
+            { text: "Take a deep breath, crouch down, and calmly explain to the children what has happened, offering them reassurance and suggesting they leave the area to play and get their minds off of it.", attributes: "wisdom,1,charisma,1,e,1,f,1"}, 
+            { text: "Pause for a moment, reflecting on how to best help the children process their feelings, then you gently lead them away from the scene, offering a quiet, comforting presence.", attributes: "wisdom,1,endurance,1,s,1,t,1"}, 
+            { text: "Call animal control, keeping the children safe and out of harm's way, while ensuring proper steps are taken to not attract more wildlife.", attributes: "wisdom,-1,intelligence,1,t,1,j,1"}, 
+            { text: "say nothing to the children, not wanting to disturb their innocence. With a heavy heart you simply gather the cat and move it away, not making eye-contact or acknowledging any of the children.", attributes: "wisdom,1,strength,1,s,1,j,1"}, 
+            { text: "Assess the situation thoughtfully, then offer to guide the children through a ritual of saying goodbye to the cat, helping them understand the natural cycle of life and death.", attributes: "wisdom,1,agility,1,e,1,t,1"}
         ]},
     {
         question : "You don't know how you ended up here but, looking at the barrel of a loaded .357 magnum, you hold your hands over your head offering vulnerability to the angry table player and... ", 
         options : [
-            { text: "Slowly and carefully, you reach for the chair behind you, using it to carefully maneuver the chair until you can quickly and decisively throw it at the assaliant.", attributes: "agility,1,strength,1"},
-            { text: "You drop to the floor, quickly rolling behind the counter saying \"Now I thought this was going to be a friendly game!\".", attributes: "agility,1,charisma,1"},
-            { text: "With a deep breath, you sit back down at the table, moving your hands slowly and deliberately on the table, resting against the scattered chips, hoping to avoid further provocation.", attributes: "agility,-1,wisdom,1"},
-            { text: "You steady yourself, then with a surge of perserverance, you push the table aside, fighting to close the gap and grab his gun.", attributes: "agility,1,endurance,1"},
-            { text: "You calculate the best way to dodge or disarm the opponent, your mind racing through potential outcomes as you plan your next move.", attributes: "agility,1,intelligence,1"}
+            { text: "Slowly and carefully, you reach for the chair behind you, using it to carefully maneuver the chair until you can quickly and decisively throw it at the assaliant.", attributes: "agility,1,strength,1,p,1,s,1"},
+            { text: "You drop to the floor, quickly rolling behind the counter saying \"Now I thought this was going to be a friendly game!\".", attributes: "agility,1,charisma,1,e,1,p,1"},
+            { text: "With a deep breath, you sit back down at the table, moving your hands slowly and deliberately on the table, resting against the scattered chips, hoping to avoid further provocation.", attributes: "agility,-1,wisdom,1,s,1,j,1"},
+            { text: "You steady yourself, then with a surge of perserverance, you push the table aside, fighting to close the gap and grab his gun.", attributes: "agility,1,endurance,1,i,1,j,1"},
+            { text: "You calculate the best way to dodge or disarm the opponent, your mind racing through potential outcomes as you plan your next move.", attributes: "agility,1,intelligence,1,s,1,t,1"}
         ]},
     {
         question : "You find yourself in a large group of strangers, no one seems to know what's going on or why they're here. What do you do?",
         options : [
-            { text: "I need to find out what's going on. You look around for anything out of the ordinary that stands out, people, things, doesn't matter... What doesn't belong?", attributes: "i,1,s,1"},
-            { text: "Engage with the people around you, was there something you missed?", attributes: "e,1,n,1"},
-            { text: "Punch the person next to you, might as well make this exciting.", attributes: "e,0,j,2"},
-            { text: "Start telling people you'll let them leave if they pay you $10.", attributes: "e,1,j,1"},
-            { text: "Check your pockets for any clues, do a quick survey of yourself to understand what kind of condition you are in.", attributes: "i,1,f,1"}
+            { text: "I need to find out what's going on. You look around for anything out of the ordinary that stands out, people, things, doesn't matter... What doesn't belong?", attributes: "intellgence,1,wisdom,1,i,1,s,1"},
+            { text: "Engage with the people around you, was there something you missed?", attributes: "charisma,1,wisdom,1,e,1,n,1"},
+            { text: "Punch the person next to you, might as well make this exciting.", attributes: "strength,1,agility,1,e,0,j,2"},
+            { text: "Start telling people you'll let them leave if they pay you $10.", attributes: "charisma,1,agility,1,e,1,j,1"},
+            { text: "Check your pockets for any clues, do a quick survey of yourself to understand what kind of condition you are in.", attributes: "wisdom,1,endurance,1,i,1,f,1"}
         ]},
     { 
         question : "You've made a wrong turn heading to your mothers house. Looking around you see a few paths laid before you. You choose to...", 
         options : [
-            { text: "try and recall the time you went to your mom's house, closing your eyes to mentally recreate the directions you took", attributes: "n,1,t,1"},
-            { text: "Look around trying to find a possible landmark or something familiar that can help you get back on track.", attributes: "s,1,j,1"},
-            { text: "Look around and knock on a door, seeing if someone's home and can give you directions.", attributes: "s,0,e,1"},
-            { text: "Follow the path you were walking down earlier. After all, you *must* have been going in the right direction at the start.", attributes: "n,1,j,1"},
-            { text: "Pull out your map and try to figure out where you are and where you need to be.", attributes: "s,1,t,1"}
+            { text: "try and recall the time you went to your mom's house, closing your eyes to mentally recreate the directions you took", attributes: "wisdom,1,intelligence,1,n,1,t,1"},
+            { text: "Look around trying to find a possible landmark or something familiar that can help you get back on track.", attributes: "wisdom,1,s,1,j,1"},
+            { text: "Look around and knock on a door, seeing if someone's home and can give you directions.", attributes: "charisma,1,strength,1,s,1,e,1"},
+            { text: "Follow the path you were walking down earlier. After all, you *must* have been going in the right direction at the start.", attributes: "endurance,1,n,1,j,1"},
+            { text: "Pull out your map and try to figure out where you are and where you need to be.", attributes: "wisdom,1,intelligence,1,s,1,t,1"}
         ]},
     {
         question : "Oh no! You've been exposed to radiation, and a mutated hand has grown out of your stomach. What is the best course of treatment?",
         options : [
-            { text: "A bullet to the brain.", attributes: "f,2,j,2"},
-            { text: "A large dose of anti-mutagen agent.", attributes: "f,1,s,1"},
-            { text: "Prayer. Maybe God will spare you in exchange for a life of pious devotion.", attributes: "f,0,p,1"},
-            { text: "Removal of the mutated tissue with a precision laser.", attributes: "t,1,s,1"},
-            { text: "Observe, with a third hand you'll be able to complete tasks much faster.", attributes: "t,1,p,2"}
+            { text: "A bullet to the brain.", attributes: "endurance,-1,strength,1,f,2,j,2"},
+            { text: "A large dose of anti-mutagen agent.", attributes: "intelligence,1,wisdom,1,f,1,s,1"},
+            { text: "Prayer. Maybe God will spare you in exchange for a life of pious devotion.", attributes: "wisdom,1,charisma,1,f,0,p,1"},
+            { text: "Removal of the mutated tissue with a precision laser.", attributes: "agility,1,endurance,1,t,1,s,1"},
+            { text: "Observe, with a third hand you'll be able to complete tasks much faster.", attributes: "wisdom,1,endurance,1,t,1,p,2"}
         ]},
     {
         question : "There is work that needs to be done and everyone else is laying around. What do you do?",
         options : [
-            { text: "Lounge with them, if it's a group effort we can't all get in trouble.", attributes: "p,1,e,1"},
-            { text: "Watch and wait for everyone else to get motivated, they know the work needs to be completed as much as you do.", attributes: "p,1,s,1"},
-            { text: "Just start working, maybe your commitment will motivate the others.", attributes: "j,0,t,1"},
-            { text: "Grab a nearby pan and wooden spoon, walk around everyone banging the pan with the spoon and telling everyone to get up.", attributes: "j,1,e,1"},
-            { text: "Explode a firecracker in a barrel next to one of your coworkers right before they doze off.", attributes: "j,1,t,1"}
+            { text: "Lounge with them, if it's a group effort we can't all get in trouble.", attributes: "charisma,1,endurance,-1,p,1,e,1"},
+            { text: "Watch and wait for everyone else to get motivated, they know the work needs to be completed as much as you do.", attributes: "wisdom,1,p,1,s,1"},
+            { text: "Just start working, maybe your commitment will motivate the others.", attributes: "endurance,1,wisdom,1,j,0,t,1"},
+            { text: "Grab a nearby pan and wooden spoon, walk around everyone banging the pan with the spoon and telling everyone to get up.", attributes: "strength,1,j,1,e,1"},
+            { text: "Explode a firecracker in a barrel next to one of your coworkers right before they doze off.", attributes: "agility,1,j,1,t,1"}
         ]}
 ];
 function clearDefaultText() {
@@ -243,63 +243,63 @@ function class_check(att, set) {
         'spa': {
             'str-int': { 
                 'class': 'shock-trooper', 
-                'description': 'A decisive leader who excels in combat and thrives in structured environments. Prefers action over theory, but knows when to plan ahead.' // ESTJ - Strong, logical, and structured.
+                'description': 'A decisive leader who excels in combat and thrives in structured environments. Prefers action over theory, but knows when to plan ahead.' // ESTJ 
             },
             'str-agi': { 
                 'class': 'tactician', 
-                'description': 'A tactician is quick-thinking and adaptable, always making split-second decisions that turn the tide of battle. Strength of character, speed of mind, and actions, will always keep them a step ahead of the unexpected.' // ESTP - Action-oriented and practical.
+                'description': 'A tactician is quick-thinking and adaptable, always making split-second decisions that turn the tide of battle. Strength of character, speed of mind, and actions, will always keep them a step ahead of the unexpected.' // ESTP 
             },
             'str-wis': { 
                 'class': 'war-hero', 
-                'description': 'A battle-hardened survivor who leads with wisdom and experience. Calm under pressure, their knowledge and strength of character can inspire and also empower those around them.' // ESFJ - Supportive, wise, and community-oriented.
+                'description': 'A battle-hardened survivor who leads with wisdom and experience. Calm under pressure, their knowledge and strength of character can inspire and also empower those around them.' // ESFJ 
             },
             'str-cha': { 
                 'class': 'smuggler', 
-                'description': 'A persuasive negotiator, using charm and wit to talk their way through difficult situations. To a smuggler their ship, and their friends, are the only things worth keeping around.' // ENFP - Enthusiastic, creative, and empathetic.
+                'description': 'A persuasive negotiator, using charm and wit to talk their way through difficult situations. To a smuggler their ship, and their friends, are the only things worth keeping around.' // ENFP 
             },
             'str-end': { 
                 'class': 'survivalist', 
-                'description': 'A gritty individual who thrives under pressure. Prepared for anything, relying on resourcefulness and an unshakable resolve to push through whatever comes their way, no matter what the next open door brings.' // ISTJ - Practical, dependable, and resilient.
+                'description': 'A gritty individual who thrives under pressure. Prepared for anything, relying on resourcefulness and an unshakable resolve to push through whatever comes their way, no matter what the next open door brings.' // ISTJ 
             },
             'int-agi': { 
                 'class': 'hacker', 
-                'description': 'Master of technology and systems, hackers outthink and outmaneuver technology, and anyone that tries to get in their way, with a sharp mind and quicker reflexes.' // INTP - Analytical, inventive, and logical.
+                'description': 'Master of technology and systems, hackers outthink and outmaneuver technology, and anyone that tries to get in their way, with a sharp mind and quicker reflexes.' // ISTP 
             },
             'int-wis': { 
                 'class': 'doctor', 
-                'description': 'A calm, methodical healer who thrives under pressure. Doctors use their extensive knowledge to save lives in even the direst situations.' // INFP - Thoughtful, empathetic, and insightful.
+                'description': 'A calm, methodical healer who thrives under pressure. Doctors use their extensive knowledge to save lives in even the direst situations.' // ISFJ
             },
             'int-cha': { 
                 'class': 'embassy-diplomat', 
-                'description': 'A skilled negotiator who builds bridges and guides conversations. A Diplomat\'s charisma and quick thinking help them navigate tense situations, staying in control while staying ahead of trouble.' // ENFJ - Charismatic, empathetic, and visionary.
+                'description': 'A skilled negotiator who builds bridges and guides conversations. A Diplomat\'s charisma and quick thinking help them navigate tense situations, staying in control while staying ahead of trouble.' // ENTP
             },
             'int-end': { 
                 'class': 'researcher', 
-                'description': 'A curious and driven loner, a researcher dives deep into problems and embraces the grind. Their quest for knowledge shapes every move, no matter how dangerous the path or high the cost may be.' // INTJ - Visionary, strategic, and focused.
+                'description': 'A curious and driven loner, a researcher dives deep into problems and embraces the grind. Their quest for knowledge shapes every move, no matter how dangerous the path or high the cost may be.' // ISTJ 
             },
             'agi-wis': { 
                 'class': 'stowaway', 
-                'description': 'The stowaway is an opportunistic figure, moving unseen in the galaxy\'s underbelly, almost forgotten. Staying alive by knowing when to act, and when to wait, weighing their next move in silence. The environment may be cold, the people harsh, but it will always be home.' // INFJ - Insightful, introspective, and visionary.
+                'description': 'The stowaway is an opportunistic figure, moving unseen in the galaxy\'s underbelly, almost forgotten. Staying alive by knowing when to act, and when to wait, weighing their next move in silence. The environment may be cold, the people harsh, but it will always be home.' // ISTP 
             },
             'agi-cha': { 
                 'class': 'scoundrel', 
-                'description': 'A quick-witted rogue who talks their way in or out of anything. With speed and charm, they\'re always a step ahead of the mark.' // ENTP - Creative, curious, and assertive.
+                'description': 'A quick-witted rogue who talks their way in or out of anything. With speed and charm, they\'re always a step ahead of the mark.' // ENTP
             },
             'agi-end': { 
                 'class': 'scout', 
-                'description': 'A scout is quick to adapt, moving through hostile territory with practiced ease. Every step is measured, balancing speed with the patience to wait when the going gets tough. They strike when the time is right, vanishing out of reach, always a step ahead of threats.' // ISTP - Practical, independent, and resourceful.
+                'description': 'A scout is quick to adapt, moving through hostile territory with practiced ease. Every step is measured, balancing speed with the patience to wait when the going gets tough. They strike when the time is right, vanishing out of reach, always a step ahead of threats.' // ISTP
             },
             'wis-cha': { 
                 'class': 'squad-leader', 
-                'description': 'A squad-leader is a natural guide, balancing wisdom and charisma. With experience as their foundation, they know when to assert authority and when to offer support, drawing the best from their team while maintaining unity and focus.' // ENFJ - Inspiring, compassionate, and strategic.
+                'description': 'A squad-leader is a natural guide, balancing wisdom and charisma. With experience as their foundation, they know when to assert authority and when to offer support, drawing the best from their team while maintaining unity and focus.' // ENFP
             },
             'wis-end': { 
                 'class': 'worker', 
-                'description': 'A steady and reliable presence, a good worker keeps the team grounded and moving forward. Taking pride in every task, they find purpose in the effort and fulfillment in seeing things through to completion, regardless of the spotlight.' // ISFJ - Supportive, reliable, and diligent.
+                'description': 'A steady and reliable presence, a good worker keeps the team grounded and moving forward. Taking pride in every task, they find purpose in the effort and fulfillment in seeing things through to completion, regardless of the spotlight.' // ISFJ 
             },
             'cha-end': { 
                 'class': 'commander', 
-                'description': 'A decisive leader that thrives when having to make the tough decisions. The Commander\'s charisma inspires loyalty, while their unwavering confidence keeps the team moving forward, even when the odds—and the universe—are against them.' // ENTJ - Assertive, strategic, and confident.
+                'description': 'A decisive leader that thrives when having to make the tough decisions. The Commander\'s charisma inspires loyalty, while their unwavering confidence keeps the team moving forward, even when the odds—and the universe—are against them.' // ENTJ
             }
         },
         'fan': {
@@ -380,7 +380,7 @@ function get_personality_name(MBTI) {
         'ESFJ': ['The Consul', 'Approach: Social, caring, values cooperation.\nGameplay Impact: Consuls are likely to seek cooperative, peaceful solutions, relying on their strong interpersonal skills. They may work to ensure everyone is happy and included, sometimes at the cost of more practical or idealistic goals.\nPossible Choices: "Appeal to the group\'s sense of community," "Find a consensus that everyone can agree on," "Ensure that no one is left behind in the discussion."'],
         
         'ISTP': ['The Virtuoso', 'Approach: Analytical, flexible, enjoys hands-on problem solving.\nGameplay Impact: Virtuosos are likely to approach diplomatic situations with pragmatism and flexibility, often looking for solutions based on action rather than words. They might favor direct solutions that require little negotiation.\nPossible Choices: "Find a practical solution that requires action," "Use logic to simplify the situation," "Make quick decisions and adapt as things change."'],
-        
+
         'ISFP': ['The Adventurer', 'Approach: Artistic, gentle, values personal freedom.\nGameplay Impact: Adventurers would focus on harmonious, creative solutions to diplomacy, offering peaceful ways to resolve conflict. They may have a more emotional, heartfelt approach to negotiations.\nPossible Choices: "Appeal to the emotions of others," "Use creativity to inspire a peaceful resolution," "Suggest a flexible, open-ended compromise."'],
         
         'ESTP': ['The Entrepreneur', 'Approach: Energetic, bold, enjoys excitement.\nGameplay Impact: Entrepreneurs are likely to engage with a bold, spontaneous approach. They thrive in action-oriented environments and may push for immediate solutions, sometimes foregoing diplomacy in favor of action.\nPossible Choices: "Take action without waiting for consensus," "Challenge others to make a quick decision," "Push forward with a bold plan."'],
@@ -412,11 +412,11 @@ function discover(desc, att) {
 
     var att_modifiers = {
         'int': [-2, -2, -3, 1],   /* ISTP */
-        'str': [1, -2, -1, -1],       /* ESTJ */
-        'end': [-1, -3, -2, 1],      /* ISTP */
-        'cha': [3, 2, 3, 1],          /* ENFP */
-        'wis': [1, 2, 2, -1],           /* ENFJ */
-        'agi': [-1, 2, 2, -1]          /* INFJ */
+        'str': [3, -2, -1, -2],       /* ESTJ */
+        'end': [-3, -1, -3, -4],      /* ISTJ */
+        'cha': [4, 2, 2, 3],          /* ENFP */
+        'wis': [1, -2, 4, -2],           /* ESFJ */
+        'agi': [-1, -2, -2, 4]          /* ISTP */
     };
 
     var clean_desc = desc.trim()  === "" ? "bold energetic free reflective risktaking decisive independent character" : desc.replace(/[^\w\s]/g, '');
@@ -449,7 +449,7 @@ function discover(desc, att) {
 
             person_scores[6] += modifiers[3] * att_weight
             person_scores[7] -= modifiers[3] * att_weight
-        }  
+        }  let selectedOption = [];
     })
     console.log('modified personality score: ', person_scores);
     var clean_desc = desc.replace(/[^\w\s]/g, '');
@@ -495,11 +495,11 @@ function updateQuestion() {
         behavior: 'smooth',
         flex: 'start' 
     });
-    let selectedOption = [];
     let questionContainer = document.getElementById("question-title");
     let optionsContainer = document.getElementById("options-container");
     let prevButton = document.getElementById("quiz-back-button");
     let nextButton = document.getElementById("quiz-button");
+    console.log(selectedOption);
     if (curr_question === app_questions.length){
         nextButton.innerHTML = "Submit";
     }
@@ -531,8 +531,9 @@ function updateQuestion() {
     });
 
     prevButton.onclick = function() {
+        console.log(selectedOption)
+        let attributes = selectedOption.split(","); 
         if (curr_question != 0){
-            let attributes = selectedOption.value.split(",");
             for (let i = 0; i < attributes.length; i += 2) {
                 let attribute = attributes[i];
                 let value = parseInt(attributes[i + 1]);
@@ -542,13 +543,14 @@ function updateQuestion() {
                 character_data.att[attribute] -= value;
             }
             curr_question--;
+            console.log(character_data.att);
             updateQuestion();             
         }
     }
     // Next button event handler
     nextButton.onclick = function() {
         // Get selected radio button
-        let selectedOption = document.querySelector('input[name="question' + curr_question + '"]:checked');
+        selectedOption = document.querySelector('input[name="question' + curr_question + '"]:checked').value;
         if (!selectedOption) {
             if (curr_question === app_questions.length){
                 curr_question = 0;
@@ -558,9 +560,8 @@ function updateQuestion() {
             alert("Please select an option!");
             return;
         }
-
         // Update the attributes based on the selected option
-        let attributes = selectedOption.value.split(",");
+        let attributes = selectedOption.split(",");
         for (let i = 0; i < attributes.length; i += 2) {
             let attribute = attributes[i];
             let value = parseInt(attributes[i + 1]);
@@ -568,10 +569,12 @@ function updateQuestion() {
                 character_data.att[attribute] = 0;
             }
             character_data.att[attribute] += value;
+            console.log(character_data.att)
         }
 
         // Move to the next question or calculate the class if it's the last question
         curr_question++;
+        console.log(selectedOption);
         quest_length = app_questions.length
         if (curr_question < (quest_length - 1)) {
             updateQuestion(); // Update the UI with the next question
