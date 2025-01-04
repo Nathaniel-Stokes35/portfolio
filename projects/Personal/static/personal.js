@@ -138,7 +138,19 @@ var app_questions = [
             { text: "Explode a firecracker in a barrel next to one of your coworkers right before they doze off.", attributes: "j,1,t,1"}
         ]}
 ];
+function clearDefaultText() {
+document.getElementById("name").addEventListener("focus", function() {
+    if (this.value === "John Jacob Jingle-Heimer-Schmidt") {
+        this.value = "";
+    }
+});
 
+document.getElementById("name").addEventListener("blur", function() {
+    if (this.value === "") {
+        this.value = "John Jacob Jingle-Heimer-Schmidt";
+    }
+});
+}
 // This needs to be reset at the start of each question
 let decisionStartTime = Date.now();  // Start tracking time when the player sees the options
 
@@ -822,4 +834,5 @@ function updateAttributes() {
         document.getElementById('class-title').innerHTML = "Class not found";
     }
 }
+window.onload = clearDefaultText;
 // Additional text to recommit
