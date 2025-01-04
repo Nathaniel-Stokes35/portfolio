@@ -139,13 +139,23 @@ input[type="file"] {
     text-align: center;
     justify-content: center;
     width:100%;
-    padding-top: 2%;
     flex-grow: 0;
 }
 #options-container input {
     padding-right: 100%;
     flex-direction: column;
     align-items: flex-start; 
+}
+#quiz-button-box {
+    width: 70%;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    max-height: 20vh;
+    border-radius: 25px;
+    padding-bottom: 20vh;
+    padding-top: 1vh;
 }
 #wrapDiv {
     display: flex;
