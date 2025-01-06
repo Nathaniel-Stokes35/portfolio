@@ -139,20 +139,18 @@ var app_questions = [
         ]}
 ];
 function clearDefaultText() {
-document.getElementById("name").addEventListener("focus", function() {
-    if (this.value === "John Jacob Jingle-Heimer-Schmidt") {
-        this.value = "";
-    }
-});
+    document.getElementById("name").addEventListener("focus", function() {
+        if (this.value === "John Jacob Jingle-Heimer-Schmidt") {
+            this.value = "";
+        }
+    });
 
-document.getElementById("name").addEventListener("blur", function() {
-    if (this.value === "") {
-        this.value = "John Jacob Jingle-Heimer-Schmidt";
-    }
-});
+    document.getElementById("name").addEventListener("blur", function() {
+        if (this.value === "") {
+            this.value = "John Jacob Jingle-Heimer-Schmidt";
+        }
+    });
 }
-// This needs to be reset at the start of each question
-let decisionStartTime = Date.now();  // Start tracking time when the player sees the options
 
 // When the player selects an option
 function trackDecision(choice) {
@@ -864,11 +862,4 @@ function updateAttributes() {
 }
 
 window.onload = clearDefaultText;
-
-window.onresize = function() {
-    // If window is resized to mobile size, redirect
-    if (window.innerWidth <= 768) {
-        window.location.href = '/cyoag-mobile.html';
-    }
-};
 // Additional text to recommit
