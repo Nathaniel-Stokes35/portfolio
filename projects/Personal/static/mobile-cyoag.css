@@ -1,0 +1,312 @@
+@import url("../../../css/portfolio.css");
+section {
+    overflow: auto;
+}
+* {
+    box-sizing: content-box;
+    flex: 1 1 auto;
+}
+label {
+    text-align: center;
+}
+section {
+    border-radius: 10px;
+    height: 100%;
+    width: 98vw;
+    box-sizing: content-box;
+    align-items: center;
+    overflow: hidden;
+}
+#cyoag-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95rem;
+    box-sizing: border-box;
+}
+#character-creation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 25px;
+    background-color: var(--primary-color);
+    font-size: 1.4rem;
+    text-align: center;
+    align-items: center;
+}
+#characterForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    flex: 1 1 auto;
+}
+.form-step {
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 auto;
+}
+#step5 {
+    width: 100%;
+    overflow: hidden;
+    max-height: 90vh;
+    max-width: 90vw;
+}
+#step7 {
+    max-height: 20vh;
+}
+.selection-box {
+    height: 100%;
+    width: 95%;
+    border-radius: 20px;
+    align-items: center;
+    margin: 0;
+    background-color: var(--primary-color);
+}
+#setting-select {
+    height: auto;
+}
+input[type="text"],
+textarea,
+button,
+select {
+    font-size: 1.4rem;
+    width: 55%;
+    padding: 5%;
+    margin: 1%;
+    text-align: center;
+    border-radius: 25px;
+    transform: scale(1.4rem);
+    max-height: 5vh;
+}
+input[type="file"] {
+    font-size: 85%;
+    padding: 10px 20px;
+    height: 50px;
+    cursor: pointer;
+}
+.name-plate {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+#att-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.labels label {
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 1%;
+}
+.boxes input[type="checkbox"] {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: 1rem;
+    margin-top: 2%;
+    margin-bottom: 2%; 
+}
+#class-title {
+    font-size: 2rem;
+    text-align: center;
+}
+#quiz-box {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    background-color: var(--primary-color);
+    height: 100%;
+}
+#title-container {
+    font-size: 1.4rem;
+    flex-direction: column;
+    padding: 2%;
+    border-radius: 10px;
+    flex-grow: 0;
+}
+#options-box {
+    background-color: var(--accent1);
+    border-radius: 30px;
+    padding: 0%;
+    width: 80%;
+    padding-left: 5%;
+    padding-right: 5%;
+    justify-content: center;
+}
+#options-container {
+    flex-direction: column;
+    font-size: 1.6rem;
+    padding-top: 3%;
+}
+#options-container label {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#options-container label:hover {
+    color: var(--accent1);
+}
+#options-container table {
+    display:flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width:100%;
+    flex-grow: 0;
+}
+#options-container tr {
+    background-color: var(--background);
+    color: var(--primary-color);
+}
+#options-container input {
+    padding-right: 100%;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+#options-container input :hover{
+    background-color: var(--primary-color);
+}
+#quiz-button-box {
+    width: 70%;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    max-height: 20vh;
+    border-radius: 25px;
+    padding-bottom: 2vh;
+    padding-top: 1vh;
+    margin-left: 15%;
+}
+#wrapDiv {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    margin: 1% 5%;
+}
+input[type="radio"]{
+    transform: scale(1.7);
+    margin-right: 5%;
+}
+#step7 {
+    margin-bottom: 100vh;
+}
+#character-info {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; /* Remove space between table borders */
+    margin: 20px 0; /* Space around the table */
+    background-color: var(--primary-color);
+}
+
+.input-table{
+    width: 100%;
+    border-collapse: collapse; /* Remove space between table borders */
+    margin: 20px 0; /* Space around the table */
+    background-color: var(--primary-color);
+}
+/* Style each table row */
+table tr {
+    display: table-row;
+    text-align: left; /* Align content to the left in each row */
+}
+#desc-box {
+    flex-direction: column;
+    background-color: var(--primary-color);
+    color: var(--accent1);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style each table cell */
+table td {
+    padding: 8px 16px; /* Space inside cells */
+    vertical-align: middle; /* Align content vertically */
+    border: 1px solid #ddd; /* Add border to each cell */
+    text-align: left; /* Align text to the left inside the cells */
+}
+
+/* Style the headers */
+table h4 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+/* Style the paragraphs */
+table p {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Style the button */
+#character-info button {
+    background-color: var(--accent1);
+    color: var(--text-color);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+a {
+    color: var(--accent1);
+}
+
+.short-description {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.long-description {
+    font-size: 12px;
+    color: var(--accent1);
+    margin-top: 5px;
+}
+
+button:hover {
+    color: var(--background);
+    background-color: var(--text-color);
+}
+@media screen and (max-width: 768px) {
+    * {
+        font-size: 0.65rem;
+    }
+    #cyoag-box {
+        display: block;
+        height: 100%;
+    }
+    h1, h2, h3, a, th {
+        font-size: 1.6rem;
+    }
+    label, td {
+        font-size: 1.4rem;
+    }
+    #quiz-box {
+        overflow: auto;
+        font-size: 1rem;
+        height: 70%;
+    }
+    .form-step {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+    input[type="radio"]{
+        transform: scale(1);
+        margin-right: 5%;
+    }
+}

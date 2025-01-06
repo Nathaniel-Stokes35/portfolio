@@ -236,6 +236,20 @@ function title(word) {
         return words.join(' ')
     }
 }
+function increase_size(index) {
+    // Get the long description and the "Read more" link based on the index
+    var longDesc = document.getElementsByClassName("long-description")[index];
+    var link = document.getElementsByTagName("a")[index];
+    
+    // Toggle the visibility of the long description
+    if (longDesc.style.display === "none") {
+        longDesc.style.display = "block";  // Show the full description
+        link.innerHTML = "Read less";  // Change the link text to "Read less"
+    } else {
+        longDesc.style.display = "none";  // Hide the full description
+        link.innerHTML = "Read more";  // Change the link text back to "Read more"
+    }
+}
 function class_check(att, set) {
     let [first_att, second_att] = att.slice(0, 2)
 
@@ -771,7 +785,6 @@ function editForm() {
     document.getElementById('step6').style.display = 'none';
     document.getElementById('step1').style.display = 'flex';
     document.body.style.overflow = "auto";
-    document.getElementById('cyoag-box').style.flexDirection = "column";
 }
 function submitForm() {
     localStorage.setItem('characterData', JSON.stringify(character_data));
@@ -850,4 +863,18 @@ function updateAttributes() {
     }
 }
 window.onload = clearDefaultText;
+window.onload = function() {
+    // If the screen width is <= 768px, redirect to mobile page
+    console.log('Redirecting to Mobile Page.')
+    if (window.innerWidth <= 768 && window.location.pathname !== "./cyoag-mobile.html") {
+        window.location.href = './cyoag-mobile.html';  // Ensure you have this path correctly set
+    }
+};
+
+window.onresize = function() {
+    // If window is resized to mobile size, redirect
+    if (window.innerWidth <= 768) {
+        window.location.href = '/cyoag-mobile.html';
+    }
+};
 // Additional text to recommit

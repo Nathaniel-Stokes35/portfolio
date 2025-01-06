@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Creation</title>
+    <link rel="stylesheet" href="./static/mobile-cyoag.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
+</head>
+<body>
+    <section id="cyoag-box">
+        <div id="character-creation">
+            <h2>Create Your Character</h2>
+            <form id="characterForm">
+
+                <section class="form-step" id="step1">
+                    <span class="selection-box">
+                        <h2>Character Name:</h2>
+                        <input type="text" id="name" name="name" value="John Jacob Jingle-Heimer-Schmidt">
+                        <button type="button" onclick="checkName()" class="next-button">Next: Sex</button>
+                    </span>
+                </section>
+
+                <section class="form-step" id="step2" style="display: none;">
+                    <header>
+                        <h2>Character Sex:</h2>
+                        <button type="button" onclick="lastStep(2)" class="back-button">Back: Name</button>
+                    </header>
+                    <span class="selection-box">
+                        <table class="input-table">
+                            <thead>
+                                <tr>
+                                    <th>Sex</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><label for="male-radio">Male</label></td>
+                                    <td><input type="radio" class="sex-radio" id="male-radio" name="sex" required></td>
+                                </tr>
+                                <tr>    
+                                    <td><label for="female-radio">Female</label></td>
+                                    <td><input type="radio" class="sex-radio" id= 'female-radio' name="sex" required></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" onclick="nextStep(2)" class="next-button">Next: Settings</button>
+                    </span>
+                </section>
+
+                <section class="form-step" id="step3" style="display: none;">
+                    <header>
+                        <h2>Choose your Setting: </h2>
+                        <button type="button" onclick="lastStep(3)" class="back-button">Back: Name</button>
+                    </header>
+                    <div class="selection-box" id="setting-table">
+                        <table class="input-table">
+                            <thead>
+                                <tr>
+                                    <th>Setting</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><label for="space-radio">Space</label></td>
+                                    <td colspan="2">
+                                        <label for="space-radio">
+                                            <p class="short-description">You are aboard a wayfaring vessel deep in the titular voids of space, journeying into 
+                                            the newly charted expanses of the galaxy.</p><a href="javascript:void(0);" onclick="increase_size(0)">(Read More)</a>
+                                            <p class="long-description" style="display: none;">On a routine trade mission to the fringes of 
+                                            known space, outer-region diplomats clash over sovereignty and the ethics of colonial 
+                                            expansion. Meanwhile, a shadowy underground network may be quietly manipulating the 
+                                            vessel's high-stakes research project—an ambitious, dangerous initiative with the potential 
+                                            to either revolutionize or obliterate entire solar systems in unparalleled scale and magnitude.</p>
+                                        </label>
+                                    </td>
+                                    <td><input type="radio" id="space-radio" name="setting" value="spa"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="fantasy-radio">Fantasy</label></td>
+                                    <td colspan="2"><label for="fantasy-radio"></label></td>
+                                    <td><input type="radio" id="fantasy-radio" name="setting" value="fan"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="pirate-radio">Pirate</label></td>
+                                    <td colspan="2"><label for="pirate-radio"></label></td>
+                                    <td><input type="radio" id="pirate-radio" name="setting" value="pir"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="selection-box" id="setting-select" style="display: none;">
+                        <select id="theme" name="theme" required>
+                            <option value="spa">Space</option>
+                            <option value="fan">Fantasy</option>
+                            <option value="pir">Pirate</option>
+                        </select>
+                    </div>
+                    <button type="button" onclick="nextStep(3)" class="next-button">Next: Attributes / Class</button>
+                </section>
+
+                <section class="form-step" id="step4" style="display: none;">
+                    <div class="selection-box">
+                        <button type="button" onclick="lastStep(4)" class="back-button">Back: Settings</button>
+                        <h2>Choose two attributes:</h2>
+                        <table id="att-options">
+                            <thead class="labels">
+                                <tr>
+                                    <th>Attributes: </th>
+                                    <th>Description: </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="boxes">
+                                <tr>
+                                    <td><label for="int">Intelligence</label></td>
+                                    <td><label for="int">
+                                        <p class="short-description">Your character has developed a sharp mind, quick to analyze and solve complex problems.</p><a href="javascript:void(0);" onclick="increase_size(0)">(Read More)</a>
+                                        <p class="long-description" style="display: none;">They excel in situations that require strategy, 
+                                        planning, and creativity. Their intellect helps them navigate the world through logic and innovation, making them ideal for roles that 
+                                        require precise thought. (Choosing Intelligence may suggest a preference for introspection and independent problem-solving, often 
+                                        guiding characters toward roles that require deep thinking and a strategic mindset.)</p>
+                                    </label></td>
+                                    <td><input type="checkbox" name="attributes" value="int" id="int" onchange="updateAttributes()"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="str">Strength</label></td>
+                                    <td><label for="str">
+                                        <p class="short-description">Your character has developed a focus on physical power and ability to overcome challenges through sheer force.</p><a href="javascript:void(0);" onclick="increase_size(1)">(Read More)</a>
+                                        <p class="long-description" style="display: none;">Whether lifting, fighting, or 
+                                        surviving, they thrive in roles that demand resilience and dominance. Strength drives them to lead with their body and willpower. (Characters 
+                                        who prioritize Strength often act decisively and face challenges head-on, guided by a desire for control and the ability to influence their environment.)</p>
+                                    </label></td>
+                                    <td><input type="checkbox" name="attributes" value="str" id="str" onchange="updateAttributes()"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="end">Endurance</label></td>
+                                    <td><label for="end">
+                                        <p class="short-description">Your character's been trained to push through fatigue, adversity, and pain.</p><a href="javascript:void(0);" onclick="increase_size(2)">(Read More)</a>
+                                        <p class="long-description" style="display: none;">Whether under physical strain or emotional hardship, they will press forward. 
+                                        It may not be pretty but they'll excel in long-term effort thriving in situations that demand patience, resilience, and tenacity. (Choosing Endurance suggests 
+                                        a steady, persistent approach, favoring roles that require lasting commitment and the ability to withstand dicciculty.)</p>
+                                    </label></td>
+                                    <td><input type="checkbox" name="attributes" value="end" id="end" onchange="updateAttributes()"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="cha">Charisma</label></td>
+                                    <td><label for="cha">
+                                        <p class="short-description">Your character has tried to perfect their social presence and ability to influence others.</p><a href="javascript:void(0);" onclick="increase_size(3)">(Read More)</a>
+                                        <p class="long-description" style="display: none;">A charasmatic character will draw people in with ease. They excel in roles that require 
+                                        persuasion, leadership, and the ability to connect with others. Their charisma helps them inspire, rally, and lead through their presence and charm to overcome 
+                                        challenges. (Choosing Charisma suggests your character has a magnetic personality, likely to inspire others and excel in social interactions, whether through 
+                                        empathy or bold action.)</p>
+                                    </label></td>
+                                    <td><input type="checkbox" name="attributes" value="cha" id="cha" onchange="updateAttributes()"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="wis">Wisdom</label></td>
+                                    <td><label for="wis">
+                                        <p class="short-description">Your character has learned to approach challenges with careful reflection.</p><a href="javascript:void(0);" onclick="increase_size(4)">(Read More)</a>
+                                        <p class="long-description" style="display: none;">A wise character uses their experience to help make sound decisions based on that experience and intuition. They excel in 
+                                        guiding others, handling complex social situations, and making choices that consider the greater good for all. (Wisdom suggests a calm, thoughtful demeanor, favoring 
+                                        roles that require guidance, understanding, and an influencing moral compass.)</p>
+                                    </label></td>
+                                    <td><input type="checkbox" name="attributes" value="wis" id="wis" onchange="updateAttributes()"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="agi">Agility</label></td>
+                                    <td><label for="agi">
+                                        <p class="short-description">Your character has developed the ability to think and move quickly with precision.</p><a href="javascript:void(0);" onclick="increase_size(5)">(Read More)</a>
+                                        <p class="long-description" style="display: none;">An agile character excels in roles that require speed, finesse, 
+                                        and adaptability. Whether dodging, sneaking, or swiftly responding, thier agility ensures they stay one step ahead. (Choosing Agility suggests a flexible, adaptable nature, 
+                                        ready to take on challenges that require quick thinking and rapid action.)</p>
+                                    </label></td>
+                                    <td><input type="checkbox" name="attributes" value="agi" id="agi" onchange="updateAttributes()"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <footer>
+                            <label id="class-title">Your Class Title will go here after selecting two attributes</label></br>
+                            <button type="button" onclick="nextStep(4)" class="next-button">Next: Character Personality / Description</button>
+                        </footer>
+                    </div>
+                </section>
+                <section class="form-step" id="step5" style="display: none;">
+                    <header>
+                        <h3>Personality Quiz:</h3>
+                        <button type="button" onclick="lastStep(5)" class="back-button">Back: Attributes / Class</button>
+                    </header>
+                    <section class="selection-box" id="quiz-box">
+                        <div id="title-container"><h2 id="question-title"></h2></div>
+                        <span id="options-box">
+                            <table id="options-container"></table>
+                            <div id="quiz-button-box">
+                                <button type="button" id="quiz-back-button" style="display: none;">Previous Question</button>
+                                <button type="button" id="quiz-button" style="display: none;">Next Question</button>
+                            </div>
+                        </span>
+                    </section>
+                    <footer>
+                        <button type="button" id="restart-button" onclick="startQuestionnaire()" class="next-button" style="display: none;">Restart</button>
+                        <button type="button" id="skip-button" onclick="skip_quiz()" class="next-button" style="display: none;">Skip</button>
+                    </footer>
+                </section>
+
+                <section class="form-step" id="step6" style="display: none;">
+                    <header>
+                        <button type="button" onclick="lastStep(6)" class="back-button">Back: Personality</button>
+                        <h3>Describe your character:</h3>
+                    </header>
+                    <section id="desc-box">
+                        <label>This is optional but if you would like to explain more about your character, this is where you can.</label>
+                        <textarea id="character_desc" name="character_desc" rows="9" placeholder="Enter a short description of your character"></textarea>
+                        <button type="button" onclick="nextStep(6)" class="next-button">Next: Character Results</button>
+                    </section>
+                </section>
+            </form>
+            <div class="form-step" id="step7" style="display: none;">
+                <h2>Review and Move to the Game</h2>
+                <button type="button" id ="edit-button" onclick="editConfirm()">Edit</button>
+                <table id="character-info">
+                    <tr>
+                        <th><h4>Setting: </h4></th>
+                        <td><p id="character_setting"></p></td>
+                    </tr>
+                    <th><h2>Character:</h2></th>
+                    <tr>
+                        <td><h4>Character Name:</h4></td>
+                        <td><p id="character_name"></p></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Personality:</h4></td>
+                        <td><p id="personality_name"></p></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Personality Description:</h4></td>
+                        <td><p id="personality_description"></p></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Class:</h4></td>
+                        <td><p id="class_name"></p></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Class Description:</h4></td>
+                        <td><p id="class_description"></p></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="button" id="submit-button" onclick="submitForm()">Submit</button></td>
+                    </tr>
+                </table>   
+            </div>
+        </div>
+    </section>
+    <script src="./static/personal.js"></script>
+</body>
