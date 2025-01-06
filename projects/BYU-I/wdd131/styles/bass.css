@@ -1,0 +1,113 @@
+:root {
+    background-color: #90AFC5;
+    --emphasis-color: #336B87;
+    --main-color: #90AFC5;
+    --accent-color: #2A3132;
+    --accent-color2: #763626;
+    color: var(--accent-color2);
+}
+* {
+    box-sizing: border-box;
+}
+html, body, main, footer {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+}
+footer p, footer h1, main p, main h1 {
+    margin: 0; 
+    padding: 0;
+}
+header {
+    text-align: center;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-content: center;
+}
+.nav-container a {
+    display: flex;
+    text-decoration: none;
+}
+#head-nav {
+    background-color: var(--accent-color);
+    height: 3vh;
+}
+#head-nav a {
+    color: var(--main-color)
+}
+a:hover{
+    color:var(--emphasis-color);
+    cursor: pointer;
+}
+main {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+    padding: 1vw;
+}
+.heading {
+    background-color: var(--accent-color);
+    font-size: 1.3rem;
+}
+.text-holder img{
+    margin-left: 20px;
+    margin-top: 10px;
+    padding: 1vw;
+}
+.text-holder p, a{
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+#self-photo {
+    float:right;
+    height: 25vh;
+}
+.card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    border: 3px solid var(--accent-color);
+    background-color: white;
+}
+.card h1{
+    color: white;
+}
+.card p{
+    color: var(--accent-color)
+}
+#about-me {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1 / 5;
+    position: relative;
+}
+#dev-tools {
+    grid-column: 5 / 6;
+    height: 100%;
+}
+#dev-tools-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.3rem;
+    color: white;
+    background-color: var(--accent-color2);
+    height: 5vh;
+    justify-content: center;
+    align-items: center;
+}
+.personal-emphasis {
+    color: var(--accent-color);
+}
