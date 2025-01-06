@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Creation</title>
     <link rel="stylesheet" href="./static/personal.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -299,6 +299,21 @@
     </footer>
     <script src="./static/personal.js">
         
+    </script>
+    <script>
+        window.onload = function() {
+            const mobilePage = "./cyoag-mobile.html";  // Use an absolute path to the mobile page
+            
+            // Get the current page pathname
+            const currentPage = window.location.pathname;
+            
+            if (currentPage !== mobilePage) {
+                if (window.innerWidth <= 768) {
+                    // Redirect to the mobile version
+                    window.location.href = mobilePage;
+                }
+            }
+        };
     </script>
 </body>
 </html>

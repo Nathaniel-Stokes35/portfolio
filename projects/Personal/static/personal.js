@@ -862,14 +862,8 @@ function updateAttributes() {
         document.getElementById('class-title').innerHTML = "Class not found";
     }
 }
+
 window.onload = clearDefaultText;
-window.onload = function() {
-    // If the screen width is <= 768px, redirect to mobile page
-    console.log('Redirecting to Mobile Page.')
-    if (window.innerWidth <= 768 && window.location.pathname !== "./cyoag-mobile.html") {
-        window.location.href = './cyoag-mobile.html';  // Ensure you have this path correctly set
-    }
-};
 
 window.onresize = function() {
     // If window is resized to mobile size, redirect
