@@ -263,6 +263,10 @@ button:hover {
     * {
         font-size: 0.5rem;
     }
+    #cyoag-box {
+        display: block;
+        height: 100%;
+    }
     h1, h2, h3, a, th {
         font-size: 1.6rem;
     }
