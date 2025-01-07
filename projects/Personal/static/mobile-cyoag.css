@@ -1,4 +1,4 @@
-@import url("../../../css/portfolio.css");
+@import url("./portfolio.css");
 section {
     overflow: auto;
 }
@@ -56,7 +56,7 @@ section {
 }
 #step5 {
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
     max-height: 100vh;
     max-width: 100vw;
 }
@@ -196,6 +196,9 @@ input[type="file"] {
 input[type="radio"]{
     transform: scale(1.7);
     margin-right: 5%;
+}
+#step5 {
+
 }
 #step7 {
     margin-bottom: 100vh;
