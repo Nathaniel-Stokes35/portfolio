@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head>
+        <link rel="icon" href="./images/favicon.png" type="image/png">
+        <link rel="stylesheet" href="styles/rafting.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rafting Momentum: Planning your Trip</title>
+        <meta name="description" content="Rafting Momentum: Trip Information">
+        <meta name="author" content="Nathaniel Stokes">
+    </head>
+    <body>
+        <div class="grid-box">
+            <header>
+                <div class="logo-box">
+                    <img src="./images/rafting-momentum.jpg" alt="Rafting Momentum Logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="trips.html">Trips</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <div class="title-box">
+                    <h1>Discover your Next Adventure Today!</h1>
+                </div>
+                <section id="trip-gallary">
+                    <section class="image-gallary three-columns">
+                        <figure class="display">
+                            <img src="./images/beginner-rapids.jpg" alt="Training-Rapids" id="image1">
+                            <input type="radio" name="trip" id="trip1" onclick="selectTrip(1)">
+                            <figcaption id="caption1">Huckleberry Hallow</figcaption>
+                        </figure>
+                        <figure class="display">
+                            <img src="./images/tight-corners.jpg" alt="Getting Close" id="image2">
+                            <input type="radio" name="trip" id="trip2" onclick="selectTrip(2)">
+                            <figcaption id="caption2">Shallow Canyon</figcaption>
+                        </figure>
+                        <figure class="display">
+                            <img src="./images/not-for-faint-of-heart.jpeg" alt="Test your skills" id="image3">
+                            <input type="radio" name="trip" id="trip3" onclick="selectTrip(3)">
+                            <figcaption id="caption3">Welder's Creek</figcaption>
+                        </figure>
+                    </section>
+                </section>
+                <section id="trips-table">
+                    <div></div>
+                    <div>
+                        <table id="trips">
+                            <tr><th>Name</th><th>Length</th><th>Difficulty</th><th>Hours</th><th>Minutes</th></tr>
+                            <tr id="tripRow1"><td>Huckleberry Hallow</td><td>3mi</td><td>Beginner</td><td>2</td><td>30</td></tr>
+                            <tr id="tripRow2"><td>Shallow Canyon</td><td>5mi</td><td>Intermediate</td><td>4</td><td>20</td></tr>
+                            <tr id="tripRow3"><td>Welder's Creek</td><td>24mi</td><td>Expert</td><td>6</td><td>10</td></tr>
+                        </table>
+                    </div>
+                    <div></div>
+                </section>
+                <section id="contact-plug">
+                    <p>If any of these beautiful landscapes, unforgiving rapids, or team-oriented challenges interest you </p>
+                    <h1><a href="contact.html">Contact Us to Book a Trip for you and YOUR team Today</a></h1>
+                </section>
+            </main>
+        </div>
+        <footer>
+            <p>&copy;2024 | Rafting Momentum, Nathaniel Stokes | Missouri, USA | 
+                <a href="./images/trips_wireframe.png" target="_blank">Trips Page Wireframe</a>
+            </p>
+            <div class="social-logos">
+                <a href="https://www.facebook.com" target="_blank" class="icon" id="facebook">
+                    <img src="./images/Facebook_logo_(square).png" alt="facebook logo">
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="icon" id="instagram">
+                    <img src="./images/Instagram_icon.png" alt="instagram logo">
+                </a>
+                <a href="https://www.linkedin.com" target="_blank" class="icon" id="linkedin">
+                    <img src="./images/LinkedIn_logo_initials.png" alt="LinkedIn logo">
+                </a>
+            </div>
+        </footer>
+        <script>
+            function selectTrip(tripNumber) {
+                // Define image sources and captions for each trip
+                const tripData = {
+                    1: { images: ['./images/beginner-rapids.jpg', './images/beginner-viewing.jpg', './images/community-training.jpg'],
+                        captions: ['Training Rapids', 'Beautiful Scenes', 'Community Friendly']
+                    },
+                    2: {images: ['./images/dangerous-pitfalls.jpg', './images/tight-corners.jpg', './images/intermediate-big-wins.jpg'],
+                        captions: ['Faster Pace', 'Tight Spaces', 'Bigger Views']
+                    },
+                    3: {images: ['./images/breathtaking-views.jpg', './images/stay-in-the-boat.jpg', './images/not-for-faint-of-heart.jpeg'],
+                    captions: ['Well-Worth the Effort', 'Keep your Head above the Water', 'Not as Easy as it Looks']
+                    },
+                };
+            
+                // Clear previous highlights
+                document.querySelectorAll('#trips tr').forEach(row => row.classList.remove('highlight'));
+            
+                // Update images based on selection
+                const selectedData = tripData[tripNumber];
+                document.getElementById('image1').src = selectedData.images[0];
+                document.getElementById('image2').src = selectedData.images[1];
+                document.getElementById('image3').src = selectedData.images[2];
+            
+                document.getElementById('caption1').textContent = selectedData.captions[0];
+                document.getElementById('caption2').textContent = selectedData.captions[1];
+                document.getElementById('caption3').textContent = selectedData.captions[2];
+            
+                // Highlight the corresponding row in the table
+                document.getElementById(`tripRow${tripNumber}`).classList.add('highlight');
+            }
+        </script>
+    </body>
+</html>
