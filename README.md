@@ -138,6 +138,7 @@ GitHub Pages Portfolio:
 
 ## Contact
 
+- Email: Nathaniel.Stokes35@gmail.com
 - GitHub: https://github.com/Nathaniel-Stokes35
 - LinkedIn: https://www.linkedin.com/in/nathan-stokes-11922170/
 
