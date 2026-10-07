@@ -2,7 +2,8 @@
 B.S. Software Development — Degree requirements completed | 3.7 GPA
 TripleTen Data Science Bootcamp
 Featured: Customer Churn — 0.922 ROC-AUC / 88.9% accuracy · Insurance ML — F1 0.93
-Portfolio · Résumé · LinkedIn```
+Portfolio · Résumé · LinkedIn
+```
 
 # Nathaniel Stokes
 
