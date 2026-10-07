@@ -15,7 +15,8 @@ My work focuses on transforming complex data and business problems into
 analytical models, software solutions, and actionable findings.
 
 📍 Missouri, USA  
-🌐 [Live Portfolio](https://github.com/Nathaniel-Stokes34/portfolio)
+🌐 [Live Portfolio](https://github.com/Nathaniel-Stokes34/portfolio/index.html)
+
 📄 [Resume](https://docs.google.com/document/d/1MUFMGQA-nNiEikrfDgJxGUVsQPPZZiSi/edit?usp=sharing&ouid=102370347989587597680&rtpof=true&sd=true)  
 💼 [LinkedIn](https://www.linkedin.com/in/nathan-stokes-11922170/)
 
