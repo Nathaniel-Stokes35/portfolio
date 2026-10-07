@@ -2,6 +2,9 @@
 
 ### Data Analytics | SQL | Python | Software Development
 
+**B.S. Software Development — Degree requirements completed | 3.7 GPA**  
+**TripleTen Data Science Bootcamp — Completed May 2025**
+
 Data and software professional with hands-on experience in predictive modeling,
 statistical analysis, data visualization, and software development. I have
 completed the degree requirements for a B.S. in Software Development at
