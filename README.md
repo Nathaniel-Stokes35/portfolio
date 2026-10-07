@@ -1,156 +1,125 @@
 # Nathaniel Stokes
-### Software Development & Data Science Portfolio
 
-Analytical software and web development student with hands-on experience in machine learning, data analysis, and full-stack development projects.
+### Data Analytics | SQL | Python | Software Development
+
+Data and software professional with hands-on experience in predictive modeling,
+statistical analysis, data visualization, and software development. I have
+completed the degree requirements for a B.S. in Software Development at
+Brigham Young University–Idaho with a 3.7 GPA and completed TripleTen's
+Data Science program.
+
+My work focuses on transforming complex data and business problems into
+analytical models, software solutions, and actionable findings.
 
 📍 Missouri, USA  
-🔗 [General Resume](https://docs.google.com/document/d/1MUFMGQA-nNiEikrfDgJxGUVsQPPZZiSi/edit?usp=sharing&ouid=102370347989587597680&rtpof=true&sd=true) 
-🔗 [LinkedIn](https://www.linkedin.com/in/nathan-stokes-11922170/)  
-🔗 [GitHub](https://github.com/Nathaniel-Stokes35)
-
-Welcome to my portfolio repository. This collection showcases projects focused on:
-
-- Software Development
-- Data Analysis
-- Machine Learning
-- Web Development
-- Data Visualization
-- Problem Solving
-
-Currently pursuing a Bachelor's degree in Software Development with an expected graduation date of August 2026. My work focuses on machine learning, data analysis, and full-stack web development, with an emphasis on building practical applications and continuously improving technical workflows.
-
-I am passionate about staying current with modern technologies, development architectures, and industry best practices while building solutions that help organizations make better use of their data and software systems.
----
-
-## Featured Projects
-
-### Customer Churn Prediction Model
-Machine learning project focused on predicting customer churn using classification models and data preprocessing techniques.
-
-**Technologies Used**
-- Python
-- Pandas
-- Scikit-learn
-- Matplotlib
-- Jupyter Notebook
-
-**Skills Demonstrated**
-- Data cleaning
-- Feature engineering
-- Predictive modeling
-- Model evaluation
+🌐 [Live Portfolio]
+📄 [Resume](https://docs.google.com/document/d/1MUFMGQA-nNiEikrfDgJxGUVsQPPZZiSi/edit?usp=sharing&ouid=102370347989587597680&rtpof=true&sd=true)  
+💼 [LinkedIn](https://www.linkedin.com/in/nathan-stokes-11922170/)
 
 ---
 
-### Insurance Customer Segmentation & Prediction
-Data science project analyzing insurance customer behavior patterns and prediction models.
+## Featured Analytics Projects
 
-**Technologies Used**
-- Python
-- CatBoost
-- XGBoost
-- LightGBM
-- Pandas
-- NumPy
+### Customer Churn Prediction
 
-**Skills Demonstrated**
-- Machine learning pipelines
-- Customer segmentation
-- Classification modeling
-- Data visualization
+**Python | pandas | XGBoost | SHAP | scikit-learn**
 
----
+Developed an end-to-end machine learning workflow for predicting customer
+churn from customer, contract, internet, and phone-service data.
 
-### Game Trend Analysis
-Analysis project exploring gaming trends and player behavior using statistical analysis and visualization techniques.
+**Results**
+- **0.922 test ROC-AUC**
+- **88.9% test accuracy**
+- Integrated four source datasets into a unified analytical dataset
+- Engineered and transformed numerical and categorical features
+- Tuned an XGBoost classifier using randomized hyperparameter search and
+  cross-validation
+- Applied SHAP to investigate model behavior and influential predictors
+- Translated model probabilities into customer risk segments to support
+  potential retention strategies
 
-**Technologies Used**
-- Python
-- Jupyter Notebook
-- Data Visualization Libraries
-
-**Skills Demonstrated**
-- Exploratory Data Analysis
-- Trend identification
-- Data storytelling
+[View Project →](PROJECT_LINK)
 
 ---
 
-### Web Development Projects
-Collection of responsive web projects demonstrating front-end development skills.
+### Insurance Claims Machine Learning Analysis
 
-**Technologies Used**
-- HTML5
-- CSS3
-- JavaScript
+**Python | pandas | NumPy | scikit-learn | kNN | Linear Regression**
 
-**Skills Demonstrated**
-- Responsive design
-- UI/UX fundamentals
-- Accessibility principles
-- Dynamic web interfaces
+Explored customer similarity, classification, regression, and
+privacy-preserving data transformation using insurance customer data.
 
----
+**Highlights**
+- Compared Euclidean and Manhattan nearest-neighbor approaches
+- Evaluated the effect of feature scaling on kNN classification
+- Achieved an **F1 score up to 0.93** with scaled kNN models
+- Implemented linear regression using NumPy matrix operations
+- Evaluated regression performance using RMSE and R²
+- Tested matrix-based feature obfuscation while preserving linear-regression
+  performance
 
-## Technologies & Tools
-
-### Languages
-- Python
-- JavaScript
-- HTML5
-- CSS3
-- SQL
-
-### Data Science & Machine Learning
-- Pandas
-- NumPy
-- Scikit-learn
-- CatBoost
-- XGBoost
-- LightGBM
-- SHAP
-- Matplotlib
-- Seaborn
-
-### Development Tools
-- Git
-- GitHub
-- Jupyter Notebook
-- VS Code
+[View Project →](PROJECT_LINK)
 
 ---
 
-## Current Goals
+### Video Game Market Analysis
 
-- Expanding full-stack web development skills
-- Building production-ready applications
-- Improving machine learning model optimization
-- Developing stronger backend development experience
+**Python | pandas | NumPy | SciPy | Matplotlib**
 
----
+Performed exploratory and statistical analysis of more than **5,000 game
+records** to investigate differences across platforms, genres, geographic
+markets, ratings, and release periods.
 
-## Live Portfolio
+**Highlights**
+- Cleaned and transformed structured market data
+- Created visualizations for platform, genre, regional, and sales analysis
+- Performed independent two-sample hypothesis tests
+- Examined relationships between critic scores, user scores, and sales
+- Converted exploratory findings into business-oriented observations
 
-GitHub Pages Portfolio:  
-[View Portfolio Website](https://nathaniel-stokes35.github.io/portfolio/)
-
----
-
-## Contact
-
-- Email: Nathaniel.Stokes35@gmail.com
-- GitHub: https://github.com/Nathaniel-Stokes35
-- LinkedIn: https://www.linkedin.com/in/nathan-stokes-11922170/
+[View Project →](PROJECT_LINK)
 
 ---
 
-## Repository Statistics
+## Software Development
 
-This repository contains projects using:
+My software-development work includes projects in C#, .NET, JavaScript,
+TypeScript, REST APIs, and full-stack web development.
 
-- Jupyter Notebook
-- Python
-- HTML/CSS
-- JavaScript
+### AeroResponse
 
-with a strong emphasis on practical learning, experimentation, and continuous improvement.
+**C# | .NET | Blazor | Razor Components**
+
+Aircraft emergency-response training simulator developed as a senior
+software-development project.
+
+[View Project →](PROJECT_LINK)
+
+### Additional Development Projects
+
+Explore my BYU–Idaho and personal software projects for work involving
+web applications, APIs, databases, and application development.
+
+[View Software Projects →](PROJECT_LINK)
+
+---
+
+## Technical Skills
+
+### Data & Analytics
+**Python, SQL**, pandas, NumPy, exploratory data analysis, data cleaning,
+data transformation, feature engineering, statistical hypothesis testing
+
+### Machine Learning
+scikit-learn, XGBoost, SHAP, classification, regression, k-nearest
+neighbors, hyperparameter tuning
+
+### Model Evaluation
+ROC-AUC, accuracy, F1, RMSE, R², confusion matrices,
+train/validation/test methodology
+
+### Visualization
+Matplotlib, Seaborn, Jupyter Notebook
+
+### Software Development
+C#, JavaScript/TypeScript,
