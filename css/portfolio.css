@@ -1,187 +1,620 @@
-:root{
-    --primary-font: 'Arial', sans-serif;
-    --secondary-font: 'Georgia', serif;
+
+/* ========================================
+   1. THEME & GLOBAL STYLES
+======================================== */
+
+:root {
+    --primary-font: Arial, sans-serif;
+    --secondary-font: Georgia, serif;
+
     --primary-color: #333;
     --accent1: #5A90C2;
     --accent2: #2C3E50;
     --accent3: #F1C40F;
+
     --background: #F5F5F5;
     --text-color: #212121;
-    background-color: var(--primary-color);
+
+    --card-radius: 25px;
+    --card-border: 3px solid var(--accent3);
 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--primary-font);
-    flex-shrink: 1;
 }
+
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
-a {
-    color: var(--accent2);
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-span {
+
+body {
     background-color: var(--primary-color);
-    color: var(--background)
-}
-#nav-box {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-#nav-box a {
-    color: var(--background)
-}
-#column-picture {
-    position: sticky;
-    border-radius: 25px;
-    top: 0;
-    z-index: 1000;
-}
-#column-picture img {
-    border-radius: 25px;
-    width: 100%;
-}
-nav ul{
-    list-style: None;
-    display: flex;
-    justify-content: space-around;
-    flex-flow: row wrap;
-    align-content: center;
-    margin: 1% 1%;
-    padding: 0;
-}
-div {
-    box-shadow: inset 4px 4px 10px rgb(3 3 3 /0.4);
-    background-color: var(--accent2);
-    color: var(--background)
-}
-#navigation {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-#navigation a{
-    line-height: 3;
-    color: var(--text-color);
-    font-weight: 600;
-}
-header {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-    font-size: 1.6rem;
-    text-shadow: 2px 2px 8px rgb(3 3 3 / 0.5);
-    margin: 1% 1%;
-}
-header a {
     color: var(--background);
+    font-family: var(--primary-font);
+    line-height: 1.6;
 }
+
+h1, h2, h3 {
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
 h3 {
     text-decoration: underline;
+    text-decoration-color: var(--accent3);
+    text-underline-offset: 5px;
 }
+
+p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+a {
+    color: var(--accent2);
+    font-weight: 600;
+}
+
+a:hover {
+    color: var(--accent1);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ========================================
+   2. PRIMARY NAVIGATION
+======================================== */
+
+body > header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--accent2);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 25%);
+}
+
+#nav-box {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 12px 20px;
+
+    padding: 16px;
+    list-style: none;
+}
+
+nav a {
+    display: block;
+    color: var(--background);
+    font-size: 1.05rem;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--accent3);
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   3. MAIN PAGE LAYOUT
+======================================== */
+
 main {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns:
+        minmax(180px, 1fr)
+        minmax(0, 4fr)
+        minmax(180px, 1.1fr);
+
+    align-items: start;
+    gap: 16px;
+
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 16px;
 }
-#sidebar {
+
+#sidebar,
+#main-body,
+#column-picture {
+    min-width: 0;
+}
+
+#main-body {
+    background-color: var(--accent2);
+    padding: 20px;
+    border-radius: var(--card-radius);
+}
+
+#main-body > header {
     text-align: center;
-    font-size: 1.5rem;
+    margin-bottom: 25px;
 }
-#sidebar header {
-    display: block;
+
+#main-body h1 {
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
 }
-section {
-    margin: 1% 1% 1%;
-    padding: 1% 1%;
-    border-radius: 50px;
-    border: 3px solid var(--accent3);
+
+article > header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+article > header h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    margin-top: 15px;
+}
+
+
+/* ========================================
+   4. SIDEBAR & PAGE NAVIGATION
+======================================== */
+
+#sidebar {
+    position: sticky;
+    top: 90px;
+
+    padding: 16px;
+    background-color: var(--accent2);
+    border-radius: var(--card-radius);
+    text-align: center;
+}
+
+#sidebar > header {
+    margin-bottom: 15px;
+}
+
+#sidebar h3 {
+    font-size: 1.25rem;
+}
+
+#navigation {
     background-color: var(--background);
-    color: var(--text-color)
+    color: var(--text-color);
+
+    border: var(--card-border);
+    border-radius: var(--card-radius);
+    padding: 15px;
 }
-p {
+
+#navigation ul {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+}
+
+#navigation a {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    padding: 6px 0;
+    overflow-wrap: break-word;
+}
+
+#navigation a:hover {
+    color: var(--accent1);
+}
+
+
+/* ========================================
+   5. CONTENT SECTIONS
+======================================== */
+
+#main-body article section {
+    background-color: var(--background);
+    color: var(--text-color);
+
+    border: var(--card-border);
+    border-radius: var(--card-radius);
+
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+#main-body article section header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#main-body article section h3 {
+    font-size: 1.35rem;
+}
+
+#main-body article section p {
+    font-size: 1.05rem;
     line-height: 1.8;
-    font-size: 1.4rem;
 }
+
+.resume-button {
+    display: inline-block;
+    color: var(--background);
+    font-size: 1rem;
+    padding: 8px 14px;
+}
+
+.resume-button:hover {
+    color: var(--accent3);
+}
+
+
+/* ========================================
+   6. PICTURE COLUMN
+======================================== */
+
+#column-picture {
+    position: sticky;
+    top: 90px;
+
+    background-color: var(--accent2);
+    padding: 12px;
+    border-radius: var(--card-radius);
+}
+
+#column-picture > header {
+    display: none;
+}
+
 #photo-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    border-radius: 25px;
-    border: 6px solid var(--accent2);
+
+    padding: 10px;
     background-color: var(--primary-color);
+
+    border-radius: var(--card-radius);
 }
+
 #photo-box img {
-    width: 85%;
+    width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 15px;
 }
-#resume object {
-    border: none;
-    width: 95vw;
-    height: 100vh;
+
+
+/* ========================================
+   7. FOOTER & SOCIAL LINKS
+======================================== */
+
+footer {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 16px 30px;
 }
-#resume {
+
+#sign-off {
+    background-color: var(--accent2);
+    text-align: center;
+
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: var(--card-radius);
+}
+
+#sign-off p {
+    margin-bottom: 8px;
+}
+
+#closing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 20px;
+    padding: 18px;
+
     background-color: var(--background);
-    border-radius: 8px;
+    color: var(--text-color);
+
+    border: var(--card-border);
+    border-radius: var(--card-radius);
+
+    margin-bottom: 20px;
 }
-#social-logos{
-    list-style-type: none;
+
+#closing p {
+    font-size: 0.95rem;
+}
+
+#social-logos {
     display: flex;
     flex-direction: row-reverse;
-    margin-bottom: 10px;
+    align-items: center;
+
+    gap: 15px;
+    list-style: none;
 }
-.icon{
-    margin: 0 15px;
+
+.icon {
     display: inline-block;
 }
-.icon img{
+
+.icon img {
     width: 40px;
     height: 40px;
+    object-fit: contain;
     transition: opacity 0.3s;
 }
-.icon:hover img{
+
+.icon:hover img {
     opacity: 0.7;
 }
-#closing {
-    gap: 2%;
-    display: flex;
-    flex-direction: row-reverse;
-}
-a:hover {
+
+
+/* ========================================
+   8. RESUME SECTION
+======================================== */
+
+#resume {
+    background-color: var(--background);
     color: var(--text-color);
+
+    border: var(--card-border);
+    border-radius: var(--card-radius);
+
+    padding: 20px;
 }
-@media screen and (max-width: 768px) {
-    header {
-        display: block;
-        text-align: center;
-        padding-bottom: 10%;
+
+#resume > header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#resume h3 {
+    font-size: 1.6rem;
+}
+
+#pdf-document {
+    width: 100%;
+    overflow: hidden;
+}
+
+#resume iframe,
+#resume object {
+    display: block;
+    width: 100%;
+    height: 75vh;
+    max-height: 850px;
+    border: 0;
+}
+
+
+/* ========================================
+   9. TABLET LAYOUT
+======================================== */
+
+@media screen and (max-width: 1100px) {
+
+    main {
+        grid-template-columns: 190px minmax(0, 1fr);
     }
+
+    #main-body {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
+
+    #column-picture {
+        grid-column: 1;
+        grid-row: 2;
+        position: static;
+    }
+
+    #photo-box img {
+        max-height: 400px;
+    }
+
+    #sidebar {
+        position: static;
+    }
+}
+
+
+/* ========================================
+   10. MOBILE LAYOUT
+======================================== */
+
+@media screen and (max-width: 768px) {
+
+    html {
+        scroll-padding-top: 110px;
+    }
+
+    /* Compact navigation */
+
+    nav ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+
+        padding: 10px;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+        text-align: center;
+        line-height: 1.3;
+        padding: 5px;
+    }
+
+    /* Single-column main layout */
+
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px;
+    }
+
+    #sidebar,
+    #main-body,
+    #column-picture {
+        width: 100%;
+        position: static;
+    }
+
+    /* Condensed page navigation */
+
+    #sidebar {
+        padding: 12px;
+    }
+
+    #sidebar > header {
+        margin-bottom: 8px;
+    }
+
+    #sidebar h3 {
+        font-size: 1.1rem;
+    }
+
+    #navigation {
+        padding: 10px;
+        border-radius: 18px;
+    }
+
+    #navigation ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    #navigation a {
+        font-size: 0.85rem;
+        line-height: 1.35;
+        padding: 8px 4px;
+    }
+
     #nav-resume {
         display: none;
     }
-    section {
-        width: 95vw;
+
+    /* Main content */
+
+    #main-body {
+        padding: 12px;
     }
-    #navigation{
-        display: block;
+
+    #main-body > header {
+        margin-bottom: 16px;
     }
-    main {
-        display:block;
+
+    #main-body h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
     }
-    #resume iframe {
-        width:90vw;
+
+    article > header h2 {
+        font-size: 1.35rem;
     }
+
+    #main-body article section {
+        padding: 18px;
+        margin-bottom: 14px;
+        border-radius: 20px;
+    }
+
+    #main-body article section h3 {
+        font-size: 1.2rem;
+    }
+
+    #main-body article section p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    /* Picture */
+
+    #column-picture {
+        padding: 10px;
+    }
+
+    #photo-box img {
+        max-height: 400px;
+        object-fit: contain;
+    }
+
+    /* Footer */
+
+    footer {
+        padding: 0 10px 20px;
+    }
+
+    #sign-off {
+        padding: 16px;
+    }
+
+    #sign-off p {
+        font-size: 0.95rem;
+    }
+
     #closing {
-        border-radius: 10px;
-        display: block;
+        flex-direction: column;
         text-align: center;
+        gap: 14px;
+    }
+
+    #social-logos {
+        justify-content: center;
+    }
+
+    /* Resume */
+
+    #resume {
+        padding: 12px;
+    }
+
+    #resume iframe,
+    #resume object {
+        width: 100%;
+        height: 65vh;
+    }
+}
+
+
+/* ========================================
+   11. SMALL MOBILE DEVICES
+======================================== */
+
+@media screen and (max-width: 390px) {
+
+    nav a {
+        font-size: 0.78rem;
+    }
+
+    #navigation a {
+        font-size: 0.8rem;
+    }
+
+    #main-body article section {
+        padding: 14px;
+    }
+
+    #main-body article section p {
+        font-size: 0.95rem;
+    }
+
+    #main-body h1 {
+        font-size: 1.45rem;
+    }
+
+    #sign-off p {
+        font-size: 0.9rem;
     }
 }
